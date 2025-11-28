@@ -12,6 +12,10 @@ public class MenuGameplay : MonoBehaviour
     [SerializeField] private GameObject ayuda;
     [SerializeField] private TextMeshProUGUI textoGuardar;
 
+    // Referencia al overlay/background del inventario para detectar clics fuera
+    [SerializeField] private GameObject inventarioOverlay;
+    [SerializeField] private GameObject ayudaOverlay;
+
     private bool isPausa = false;
     private bool isAjustes = false;
     private bool isGuardar = false;
@@ -23,7 +27,14 @@ public class MenuGameplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        // CRÍTICO: Asegurar que Time.timeScale esté en 1 al iniciar la escena
+        Time.timeScale = 1;
+
+        // Asegurar que todos los paneles estén desactivados al inicio
+        InicializarPaneles();
+
+        // Resetear todas las variables de estado
+        ResetearEstados();
     }
 
     // Update is called once per frame
@@ -31,12 +42,66 @@ public class MenuGameplay : MonoBehaviour
     {
         
     }
+
+    // Inicializa todos los paneles de UI desactivándolos al inicio
+    private void InicializarPaneles()
+    {
+        if (pausa != null)
+        {
+            pausa.SetActive(false);
+        }
+
+        if (ajustes != null)
+        {
+            ajustes.SetActive(false);
+        }
+
+        if (guardar != null)
+        {
+            guardar.SetActive(false);
+        }
+
+        if (inventario != null)
+        {
+            inventario.SetActive(false);
+        }
+
+        if (ayuda != null)
+        {
+            ayuda.SetActive(false);
+        }
+        // Desactivar el overlay del inventario también
+        if (inventarioOverlay != null)
+        {
+            inventarioOverlay.SetActive(false);
+        }
+        if (ayudaOverlay != null)
+        {
+            ayudaOverlay.SetActive(false);
+        }
+    }
+
+    /// Resetea todas las variables de estado a sus valores iniciales
+    private void ResetearEstados()
+    {
+        isPausa = false;
+        isAjustes = false;
+        isGuardar = false;
+        isInventario = false;
+        isAyuda = false;
+        isVolver = false;
+        isSalir = false;
+    }
+
     // Botón
     public void Pausa()
     {
         //activar pantalla pausa
         Time.timeScale = 0;
-        pausa.SetActive(true);
+        if (pausa != null)
+        {
+            pausa.SetActive(true);
+        }
         isPausa = true;
     }
     // Botón
@@ -44,7 +109,10 @@ public class MenuGameplay : MonoBehaviour
     {
         //activar pantalla ajustes
         Time.timeScale = 0;
-        ajustes.SetActive(true);
+        if (ajustes != null)
+        {
+            ajustes.SetActive(true);
+        }
         isAjustes = true;
 
     }
@@ -53,10 +121,16 @@ public class MenuGameplay : MonoBehaviour
     {
         //advertencia guardar antes de?
         //bool volver
-        guardar.SetActive(true);
-        isVolver= true;
+        if (guardar != null)
+        {
+            guardar.SetActive(true);
+        }
+        isVolver = true;
         isGuardar = true;
-        textoGuardar.text = "¿Desea Guardar antes de volver al inicio?";
+        if (textoGuardar != null)
+        {
+            textoGuardar.text = "¿Desea Guardar antes de volver al inicio?";
+        }
 
     }
     // Botón
@@ -64,10 +138,16 @@ public class MenuGameplay : MonoBehaviour
     {
         //advertencia pantalla guardar
         //bool salir
-        guardar.SetActive(true);
-        isSalir= true;
+        if (guardar != null)
+        {
+            guardar.SetActive(true);
+        }
+        isSalir = true;
         isGuardar = true;
-        textoGuardar.text = "¿Desea Guardar antes de salir?";
+        if (textoGuardar != null)
+        {
+            textoGuardar.text = "¿Desea Guardar antes de salir?";
+        }
     }
     // Botón si
     public void Guardar()
@@ -78,18 +158,30 @@ public class MenuGameplay : MonoBehaviour
 
         //Desactivar botones
         Debug.Log("Guardando");
+
+        // CRÍTICO: Restaurar Time.timeScale antes de cargar la escena
+        Time.timeScale = 1;
+
         if (isVolver)
         {
             isVolver = false;
-            textoGuardar.text = "Guardando y volviendo";
-            StartCoroutine(Delay());
+            if (textoGuardar != null)
+            {
+                textoGuardar.text = "Guardando y volviendo";
+            }
+            // No usar corrutina aquí, cargar directamente
+            // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
         }
         if (isSalir)
         {
             isSalir = false;
-            textoGuardar.text = "Guardando y saliendo";
-            StartCoroutine(Delay());
+            if (textoGuardar != null)
+            {
+                textoGuardar.text = "Guardando y saliendo";
+            }
+            // No usar corrutina aquí, salir directamente
+            // StartCoroutine(Delay());
             Debug.Log("Saliendo");
             Application.Quit();
         }
@@ -101,16 +193,28 @@ public class MenuGameplay : MonoBehaviour
         //if salir
 
         //Desactivar botones
+
+        // CRÍTICO: Restaurar Time.timeScale antes de cargar la escena
+        Time.timeScale = 1;
+
         if (isVolver)
         {
-            textoGuardar.text = "Volviendo";
-            StartCoroutine(Delay());
+            if (textoGuardar != null)
+            {
+                textoGuardar.text = "Volviendo";
+            }
+            // No usar corrutina aquí, cargar directamente
+            // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
         }
         if (isSalir)
         {
-            textoGuardar.text = "Saliendo";
-            StartCoroutine(Delay());
+            if (textoGuardar != null)
+            {
+                textoGuardar.text = "Saliendo";
+            }
+            // No usar corrutina aquí, salir directamente
+            // StartCoroutine(Delay());
             Debug.Log("Saliendo");
             Application.Quit();
         }
@@ -120,16 +224,64 @@ public class MenuGameplay : MonoBehaviour
     public void Inventario()
     {
         //activa pantalla inventario
-        inventario.SetActive(true);
+        if (inventario != null)
+        {
+            inventario.SetActive(true);
+        }
+        // Activar el overlay para detectar clics fuera
+        if (inventarioOverlay != null)
+        {
+            inventarioOverlay.SetActive(true);
+        }
+
         isInventario = true;
     }
+
+    // Cierra el inventario cuando se hace clic fuera del panel
+    public void CerrarInventario()
+    {
+        if (inventario != null)
+        {
+            inventario.SetActive(false);
+        }
+        // Desactivar el overlay también
+        if (inventarioOverlay != null)
+        {
+            inventarioOverlay.SetActive(false);
+        }
+
+        isInventario = false;
+    }
+
     //botón
     public void Ayuda()
     {
         //activa pantalla ayuda
-        ayuda.SetActive(true);
-        Time.timeScale = 0;
+        if (ayuda != null)
+        {
+            ayuda.SetActive(true);
+        }
+        // Activar el overlay para detectar clics fuera
+        if (ayudaOverlay != null)
+        {
+            ayudaOverlay.SetActive(true);
+        }
+
         isAyuda = true;
+    }
+    public void CerrarAyuda()
+    {
+        if (ayuda != null)
+        {
+            ayuda.SetActive(false);
+        }
+        //desactivarOverlay
+        if (ayudaOverlay != null)
+        {
+            ayudaOverlay.SetActive(false);
+        }
+
+        isAyuda = false;
     }
     //botón
     public void Cerrar()
@@ -139,18 +291,43 @@ public class MenuGameplay : MonoBehaviour
         //cerrar ayuda
         if (isPausa)
         {
-            pausa.SetActive(false);
+            if (pausa != null)
+            {
+                pausa.SetActive(false);
+            }
             isPausa = false;
         }
         if (isGuardar)
         {
-            guardar.SetActive(false);
+            if (guardar != null)
+            {
+                guardar.SetActive(false);
+            }
             isGuardar = false;
         }
         if (isAjustes)
         {
-            ajustes.SetActive(false);
+            if (ajustes != null)
+            {
+                ajustes.SetActive(false);
+            }
             isAjustes = false;
+        }
+        if (isInventario)
+        {
+            if (inventario != null)
+            {
+                inventario.SetActive(false);
+            }
+            isInventario = false;
+        }
+        if (isAyuda)
+        {
+            if (ayuda != null)
+            {
+                ayuda.SetActive(false);
+            }
+            isAyuda = false;
         }
     }
 

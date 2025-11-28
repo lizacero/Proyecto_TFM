@@ -14,6 +14,7 @@ public class GameplayPlayerManager : MonoBehaviour
 
     void Start()
     {
+        // Asegurar que se ejecute después de que la escena esté completamente cargada
         CargarDatosJugador();
         ActivarPersonajeSeleccionado();
     }

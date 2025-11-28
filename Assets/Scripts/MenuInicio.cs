@@ -6,6 +6,9 @@ public class MenuInicio : MonoBehaviour
 {
     [SerializeField] private Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    // Referencia al manager de nuevo juego para validar antes de jugar
+    [SerializeField] private NuevoJuegoManager nuevoJuegoManager;
     void Start()
     {
         
@@ -30,7 +33,28 @@ public class MenuInicio : MonoBehaviour
     }
     public void Jugar()
     {
-        SceneManager.LoadScene(1);
+        // Validar que se hayan guardado los datos antes de cargar la escena
+        if (nuevoJuegoManager != null)
+        {
+            // Guardar datos y validar
+            if (nuevoJuegoManager.GuardarDatosYValidar())
+            {
+                // Si todo está bien, cargar la escena de gameplay
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                // Si no se validó (por ejemplo, no se seleccionó personaje), no cargar
+                Debug.LogWarning("No se puede iniciar el juego. Por favor, completa la selección de personaje.");
+                // Aquí podrías mostrar un mensaje en la UI si lo deseas
+            }
+        }
+        else
+        {
+            // Si no hay manager, cargar directamente (comportamiento antiguo)
+            Debug.LogWarning("MenuInicio: No se ha asignado el NuevoJuegoManager. Cargando escena sin validación.");
+            SceneManager.LoadScene(1);
+        }
     }
 
     public void Continuar()
