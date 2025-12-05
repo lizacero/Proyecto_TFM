@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 130608780}
-  - component: {fileID: 130608779}
   - component: {fileID: 130608778}
   m_Layer: 0
   m_Name: Player
@@ -195,22 +194,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &130608779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130608777}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 986f95de2f5923947be3e55ddd1bd66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovimientoPersonaje
-  velocidadMovimiento: 3
-  distanciaMinima: 0.1
-  camaraPrincipal: {fileID: 624714681}
-  pies: {fileID: 827134974}
 --- !u!4 &130608780
 Transform:
   m_ObjectHideFlags: 0
@@ -1231,7 +1214,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 624714682}
   - {fileID: 822286378}
-  - {fileID: 2073641459}
   - {fileID: 1364846985}
   - {fileID: 317550414}
   - {fileID: 827134975}
+  - {fileID: 2073641459}
