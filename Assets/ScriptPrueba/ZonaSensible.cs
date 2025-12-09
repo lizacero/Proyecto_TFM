@@ -3,6 +3,7 @@ using UnityEngine;
 public class ZonaSensible : MonoBehaviour
 {
     public ControlCursor controlCursor;
+    [SerializeField] private PreGameScene preGameScene; // Referencia al director
 
     //Tipo de objeto
     [SerializeField] private string tipoObjeto ="";
@@ -38,6 +39,30 @@ public class ZonaSensible : MonoBehaviour
         if (string.IsNullOrEmpty(objeto))
         {
             objeto = gameObject.name.ToLower();
+        }
+        // Si hay un PreGameScene, notificarle el clic primero
+        if (preGameScene != null)
+        {
+            if (objeto.Contains("ventana"))
+            {
+                preGameScene.OnClicVentana();
+                return; // El director maneja todo
+            }
+            else if (objeto.Contains("estrella"))
+            {
+                preGameScene.OnClicEstrella();
+                return; // El director maneja todo
+            }
+            else if (objeto.Contains("papel"))
+            {
+                preGameScene.OnClicPapel();
+                return; // El director maneja todo
+            }
+            else if (objeto.Contains("cama"))
+            {
+                preGameScene.OnClicCama();
+                return; // El director maneja todo
+            }
         }
 
         // Llamar al método correspondiente según el tipo de objeto
