@@ -68,7 +68,8 @@ public class MenuGameplay : MonoBehaviour
 
         if (ayuda != null)
         {
-            ayuda.SetActive(false);
+            //ayuda.SetActive(false);
+            ayuda.SetActive(true);
         }
         // Desactivar el overlay del inventario también
         if (inventarioOverlay != null)
@@ -102,8 +103,10 @@ public class MenuGameplay : MonoBehaviour
         {
             pausa.SetActive(true);
         }
+        ToggleZonasSensibles(false);
         isPausa = true;
     }
+
     // Botón
     public void Ajustes()
     {
@@ -169,6 +172,9 @@ public class MenuGameplay : MonoBehaviour
             {
                 textoGuardar.text = "Guardando y volviendo";
             }
+            // Restaurar cursor del sistema antes de cambiar de escena
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             // No usar corrutina aquí, cargar directamente
             // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
@@ -203,6 +209,9 @@ public class MenuGameplay : MonoBehaviour
             {
                 textoGuardar.text = "Volviendo";
             }
+            // Restaurar cursor del sistema antes de cambiar de escena
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             // No usar corrutina aquí, cargar directamente
             // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
@@ -329,8 +338,21 @@ public class MenuGameplay : MonoBehaviour
             }
             isAyuda = false;
         }
+        ToggleZonasSensibles(true);
     }
 
+    private void ToggleZonasSensibles(bool habilitar)
+    {
+        ZonaInteractuable[] zonas = Object.FindObjectsByType<ZonaInteractuable>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+
+        foreach (ZonaInteractuable zona in zonas)
+        {
+            if (zona != null)
+            {
+                zona.SetInteraccionesActivas(habilitar);
+            }
+        }
+    }
     //Delay
     private IEnumerator Delay()
     {

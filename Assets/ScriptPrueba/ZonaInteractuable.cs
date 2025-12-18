@@ -1,15 +1,28 @@
 using UnityEngine;
 
-public class ZonaSensible : MonoBehaviour
+public class ZonaInteractuable : MonoBehaviour
 {
-    public ControlCursor controlCursor;
-    [SerializeField] private PreGameScene preGameScene; // Referencia al director
+    [SerializeField] private ControlCursor controlCursor;
+    [SerializeField] private PreGameManager preGameManager;
+    [SerializeField] private string tipoObjeto = "";
 
-    //Tipo de objeto
-    [SerializeField] private string tipoObjeto ="";
+    private bool interaccionesActivas = true;
+
+    private void Awake()
+    {
+        controlCursor = FindAnyObjectByType<ControlCursor>();
+        preGameManager = FindAnyObjectByType<PreGameManager>();
+    }
+
+    // Permite activar/desactivar interacciones desde fuera
+    public void SetInteraccionesActivas(bool valor)
+    {
+        interaccionesActivas = valor;
+    }
 
     private void OnMouseEnter()
     {
+        if (!interaccionesActivas) return;
         if (controlCursor != null)
         {
             controlCursor.CambiarCursor("Mano");
@@ -18,6 +31,7 @@ public class ZonaSensible : MonoBehaviour
 
     private void OnMouseExit()
     {
+        if (!interaccionesActivas) return;
         if (controlCursor != null)
         {
             controlCursor.CambiarCursor("Normal");
@@ -28,6 +42,7 @@ public class ZonaSensible : MonoBehaviour
     /// Se ejecuta cuando se hace clic en el objeto
     private void OnMouseDown()
     {
+        if (!interaccionesActivas) return;
         if (controlCursor == null)
         {
             Debug.LogWarning($"ZonaSensible en '{gameObject.name}': No se ha asignado el ControlCursor.");
@@ -40,47 +55,37 @@ public class ZonaSensible : MonoBehaviour
         {
             objeto = gameObject.name.ToLower();
         }
+
         // Si hay un PreGameScene, notificarle el clic primero
-        if (preGameScene != null)
+        if (preGameManager != null)
         {
-            if (objeto.Contains("ventana"))
+            if (objeto.Contains("ventana2"))
             {
-                preGameScene.OnClicVentana();
+                preGameManager.OnClicVentana2();
+                return; // El director maneja todo
+            }
+            else if (objeto.Contains("ventana"))
+            {
+                preGameManager.OnClicVentana();
                 return; // El director maneja todo
             }
             else if (objeto.Contains("estrella"))
             {
-                preGameScene.OnClicEstrella();
+                preGameManager.OnClicEstrella();
                 return; // El director maneja todo
             }
             else if (objeto.Contains("papel"))
             {
-                preGameScene.OnClicPapel();
+                preGameManager.OnClicPapel();
                 return; // El director maneja todo
             }
             else if (objeto.Contains("cama"))
             {
-                preGameScene.OnClicCama();
+                preGameManager.OnClicCama();
                 return; // El director maneja todo
             }
+            
         }
 
-        // Llamar al método correspondiente según el tipo de objeto
-        if (objeto.Contains("ventana"))
-        {
-            controlCursor.Ventana();
-        }
-        else if (objeto.Contains("cama"))
-        {
-            controlCursor.Cama();
-        }
-        else if (objeto.Contains("mesa"))
-        {
-            controlCursor.Mesa();
-        }
-        else
-        {
-            Debug.LogWarning($"ZonaSensible: No se reconoció el tipo de objeto '{objeto}'. Asegúrate de asignar el tipo en el Inspector.");
-        }
     }
 }

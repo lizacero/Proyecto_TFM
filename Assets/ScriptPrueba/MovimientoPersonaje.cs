@@ -5,7 +5,7 @@ public class MovimientoPersonaje : MonoBehaviour
 {
     [Header("Configuración de Movimiento")]
     [SerializeField] private float velocidadMovimiento = 3f;
-    [SerializeField] private float distanciaMinima = 0.1f;
+    [SerializeField] private float distanciaMinima = 0.01f;
 
     [Header("Zona Caminable")]
     [SerializeField] private bool usarZonaCaminable = true;
@@ -15,7 +15,7 @@ public class MovimientoPersonaje : MonoBehaviour
     [SerializeField] private Camera camaraPrincipal;
 
     private Vector3 destino;
-    private bool estaMoviendose = false;
+    public bool estaMoviendose = false;
     private Coroutine movimientoCorrutina;
     private Collider2D colliderSuelo;
 
