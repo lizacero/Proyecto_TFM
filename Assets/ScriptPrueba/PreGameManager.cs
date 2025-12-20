@@ -15,10 +15,15 @@ public class PreGameManager : MonoBehaviour
     [Header("Referencias Objetos")]
     [SerializeField] private GameObject personaje;
     [SerializeField] private GameObject ventana;
+    [SerializeField] private GameObject abierta;
+    [SerializeField] private GameObject cerrada;
     [SerializeField] private GameObject ventana2;
     [SerializeField] private GameObject cama;
     [SerializeField] private GameObject estrella;
     [SerializeField] private GameObject papel;
+
+    [Header("Referencia Animator")]
+    //[SerializeField] private Animator animVentana;
 
     [Header("Referencias Escenas")]
     [SerializeField] private GameObject escenaHabitacion;
@@ -57,6 +62,8 @@ public class PreGameManager : MonoBehaviour
     {
         personaje = GameObject.Find("Personaje");
         ventana = GameObject.Find("Ventana");
+        abierta = GameObject.Find("Abierta");
+        cerrada = GameObject.Find("Cerrada");
         ventana2 = GameObject.Find("Ventana2");
         cama = GameObject.Find("Cama");
         estrella = GameObject.Find("Estrella");
@@ -138,6 +145,10 @@ public class PreGameManager : MonoBehaviour
             escenaVentana.SetActive(false);
         if (escenaHabitacion != null)
             escenaHabitacion.SetActive(true);
+        if (abierta != null)
+            abierta.SetActive(true);
+        if (cerrada != null)
+            cerrada.SetActive(false);
         StopAllCoroutines();
     }
 
@@ -188,6 +199,8 @@ public class PreGameManager : MonoBehaviour
         // Etapa 3
         if (etapaActual == EtapaGuion.WaitVentana2)
         {
+            abierta.SetActive(false);
+            cerrada.SetActive(true);
             escenaHabitacion.SetActive(true);
             escenaVentana.SetActive(false);
             personaje.SetActive(true);

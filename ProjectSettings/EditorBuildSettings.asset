@@ -10,7 +10,10 @@ EditorBuildSettings:
     guid: 50caaaf9212b51e4aae2e81dc0db7176
   - enabled: 1
     path: Assets/Scenes/PreGame.unity
-    guid: b75bc831d34fa9a4aa6b02500d1f17e4
+    guid: 3cc66adb1b8c6bd4abd4b014dbc7e529
+  - enabled: 1
+    path: Assets/Scenes/Baul.unity
+    guid: 69806912844451743be5fea28d89c8f7
   - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 1b3847cffd0404c4bb1744a941594e55
