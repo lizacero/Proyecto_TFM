@@ -18,6 +18,7 @@ public class MovimientoPersonaje : MonoBehaviour
     public bool estaMoviendose = false;
     private Coroutine movimientoCorrutina;
     private Collider2D colliderSuelo;
+    private bool movimientoHabilitado = true;
 
     void Start()
     {
@@ -39,7 +40,7 @@ public class MovimientoPersonaje : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+        if (movimientoHabilitado && Input.GetMouseButtonDown(0) && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
         {
             MoverAlClic();
         }
@@ -100,5 +101,31 @@ public class MovimientoPersonaje : MonoBehaviour
         transform.position = destino;
         estaMoviendose = false;
         movimientoCorrutina = null;
+    }
+
+    public void SetMovimientoHabilitado(bool habilitado)
+    {
+        movimientoHabilitado = habilitado;
+
+        if (!habilitado && estaMoviendose)
+        {
+            if (movimientoCorrutina != null)
+            {
+                StopCoroutine(movimientoCorrutina);
+                movimientoCorrutina = null;
+            }
+            estaMoviendose = false;
+        }
+    }
+    /// <summary>
+    /// Rehabilita el movimiento al final del frame actual
+    /// Esto asegura que el clic ya fue procesado antes de rehabilitar
+    /// </summary>
+    public IEnumerator RehabilitarMovimiento()
+    {
+        // Esperar hasta el final del frame actual
+        yield return new WaitForEndOfFrame();
+        // Rehabilitar el movimiento
+        SetMovimientoHabilitado(true);
     }
 }

@@ -15,8 +15,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Baul.unity
     guid: 69806912844451743be5fea28d89c8f7
   - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
-    guid: 1b3847cffd0404c4bb1744a941594e55
+    path: Assets/Scenes/Puerta1.unity
+    guid: 986dc610d07b5a948a7c8272a8a93e51
+  - enabled: 1
+    path: Assets/Scenes/Puerta2.unity
+    guid: 1edd463a096159844930893fe4038a83
+  - enabled: 1
+    path: Assets/Scenes/Puerta3.unity
+    guid: eb4c8430132c9c244b1279738a8c1148
+  - enabled: 1
+    path: Assets/Scenes/Puerta4.unity
+    guid: 6cacf6357c2864b438191b293554c9c3
+  - enabled: 1
+    path: Assets/Scenes/Puerta5.unity
+    guid: 85c903116d7ae32409890d009e78f407
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

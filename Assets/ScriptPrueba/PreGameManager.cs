@@ -21,6 +21,7 @@ public class PreGameManager : MonoBehaviour
     [SerializeField] private GameObject cama;
     [SerializeField] private GameObject estrella;
     [SerializeField] private GameObject papel;
+    [SerializeField] private MovimientoPersonaje movimientoPersonaje;
 
     [Header("Referencia Animator")]
     //[SerializeField] private Animator animVentana;
@@ -35,6 +36,13 @@ public class PreGameManager : MonoBehaviour
     [Header("Configuración Fade")]
     [SerializeField] private GameObject panelFade; // Panel UI para el fade out (Image con color negro)
     [SerializeField] private float duracionFade = 5f;
+
+    [Header("Referencias personaje")]
+    // Claves para PlayerPrefs (deben coincidir con las de NuevoJuegoManager)
+    private const string KEY_PERSONAJE = "PersonajeSeleccionado";
+    private const string KEY_NOMBRE = "NombreJugador";
+    private int personajeSeleccionado = 0;
+    private string nombreJugador = "";
 
     // Estado del guion
     private enum EtapaGuion
@@ -55,12 +63,12 @@ public class PreGameManager : MonoBehaviour
     private bool papelVisible = false;
     private bool personajeEnCama = false;
     private bool finEspera = false;
-    private MovimientoPersonaje movimientoPersonaje;
 
 
     private void Awake()
     {
         personaje = GameObject.Find("Personaje");
+        movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
         ventana = GameObject.Find("Ventana");
         abierta = GameObject.Find("Abierta");
         cerrada = GameObject.Find("Cerrada");
@@ -69,7 +77,7 @@ public class PreGameManager : MonoBehaviour
         estrella = GameObject.Find("Estrella");
         papel = GameObject.Find("Papel");
         mensajes = GameObject.Find("Mensajes");
-        
+        CargarDatosJugador();
         InicializarValores();
     }
 
@@ -105,6 +113,16 @@ public class PreGameManager : MonoBehaviour
         }
     }
 
+    private void CargarDatosJugador()
+    {
+        // Cargar personaje seleccionado (1 o 2)
+        personajeSeleccionado = PlayerPrefs.GetInt(KEY_PERSONAJE, 0);
+
+        // Cargar nombre del jugador
+        nombreJugador = PlayerPrefs.GetString(KEY_NOMBRE, "Jugador");
+
+        Debug.Log($"Datos cargados - Personaje: {personajeSeleccionado}, Nombre: {nombreJugador}");
+    }
     /// <summary>
     /// Inicializando valores generales
     /// </summary>
@@ -152,7 +170,7 @@ public class PreGameManager : MonoBehaviour
         StopAllCoroutines();
     }
 
-    void IniciarGuion()
+    private void IniciarGuion()
     {
         // Etapa 0
         etapaActual = EtapaGuion.WaitVentana1;
@@ -199,6 +217,11 @@ public class PreGameManager : MonoBehaviour
         // Etapa 3
         if (etapaActual == EtapaGuion.WaitVentana2)
         {
+            if (movimientoPersonaje != null)
+            {
+                movimientoPersonaje.SetMovimientoHabilitado(false);
+                StartCoroutine(movimientoPersonaje.RehabilitarMovimiento());
+            }
             abierta.SetActive(false);
             cerrada.SetActive(true);
             escenaHabitacion.SetActive(true);
