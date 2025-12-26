@@ -32,11 +32,15 @@ public class BaulScene : MonoBehaviour
     private const string KEY_NOMBRE = "NombreJugador";
     private int personajeSeleccionado = 0;
     private string nombreJugador = "";
+    private int conversacionValor=0;
+    private string[] conversacionTexto = new string[10];
 
     private enum EtapaGuion
     {
         Inicio,
-        WaitBaul
+        WaitInstrucciones,
+        WaitBaul,
+        WaitPuerta1
     }
 
 
@@ -65,6 +69,7 @@ public class BaulScene : MonoBehaviour
     void Update()
     {
         
+        ListaAyuda();
     }
 
     private void CargarDatosJugador()
@@ -89,29 +94,59 @@ public class BaulScene : MonoBehaviour
             textoAyuda.text = "";
         if (textoGuion != null)
             textoGuion.text = "";
+
+        oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+        baul.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+        puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+        puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+        puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+        puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+        puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
     }
 
     // Referencia animación orugaManager.
     public void IniciarGuion()
     {
         // Etapa 0
-        etapaActual = EtapaGuion.WaitBaul;
+        etapaActual = EtapaGuion.WaitInstrucciones;
         textoGuion.text = "";
-        textoAyuda.text = "Hola " + nombreJugador+ ". Soy Polipol y estoy aquí para guiarte. Haz clic sobre mi";
-        Debug.Log(textoAyuda.text);
+        textoAyuda.text = conversacionTexto[0];
+        oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
     }
 
     public void OnClicOruga()
     {
-        if (etapaActual == EtapaGuion.WaitBaul)
+        if (etapaActual == EtapaGuion.WaitInstrucciones)
         {
-            textoAyuda.text = "De esta manera siempre que te sientas sin rumbo, yo te ayudaré.";
+            conversacionValor++;
+            
+            
+            if (conversacionValor == 2)
+            {
+                baul.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+                conversacionValor = 2;
+                etapaActual = EtapaGuion.WaitBaul;
+            }
+        }
+        if (etapaActual == EtapaGuion.WaitPuerta1 || conversacionValor ==3)
+        {
+            conversacionValor++;
         }
     }
 
     public void OnClicBaul()
     {
         Debug.Log("Clic en baul");
+        if(etapaActual == EtapaGuion.WaitBaul)
+        {
+            conversacionValor++;
+            //cambia animación baul abierto
+            etapaActual = EtapaGuion.WaitPuerta1;
+        }
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            conversacionValor++;
+        }
     }
 
     public void OnClicPuerta1()
@@ -135,6 +170,16 @@ public class BaulScene : MonoBehaviour
         Debug.Log("Clic en puerta 5");
     }
 
+    private void ListaAyuda()
+    {
+        textoAyuda.text = conversacionTexto[conversacionValor];
+        conversacionTexto[0] = "Hola " + nombreJugador + ". Soy Polipol y estoy aquí para guiarte. Haz clic sobre mi";
+        conversacionTexto[1] = "De esta manera siempre que te sientas sin rumbo, yo te ayudaré.";
+        conversacionTexto[2] = "Dale clic al baúl";
+        conversacionTexto[3] = "Este es el baul de los recuerdos.";
+        conversacionTexto[4] = "Detrás de cada puerta encontrarás una emoción diferente para enfrentar.";
+
+    }
     void IniciarFadeIn()
     {
         if (panelFade != null)

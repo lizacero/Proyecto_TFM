@@ -437,7 +437,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -567,7 +567,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -995,7 +995,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1653,7 +1653,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1873,7 +1873,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2719,15 +2719,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 7.794464, y: -0.14597893}
+    - - {x: 4.8797445, y: -3.136481}
+      - {x: 6.2540436, y: -2.7538252}
+      - {x: 6.2500725, y: -0.14597893}
       - {x: -4.464301, y: -0.14462113}
       - {x: -4.5533204, y: -1.4068497}
       - {x: -4.653632, y: -1.8800989}
       - {x: -4.8313403, y: -2.1217647}
       - {x: -5.346435, y: -2.2091832}
       - {x: -8.342993, y: -2.1192849}
-      - {x: -8.589012, y: -4.8391514}
-      - {x: 7.938551, y: -4.8208604}
+      - {x: -8.561435, y: -4.8391514}
+      - {x: 4.4640274, y: -4.89223}
+      - {x: 4.538581, y: -3.8527906}
+      - {x: 4.6291394, y: -3.3867824}
   m_UseDelaunayMesh: 0
 --- !u!4 &2140902140
 Transform:
