@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ZonaInteractuable : MonoBehaviour
 {
     [SerializeField] private ControlCursor controlCursor;
     [SerializeField] private PreGameManager preGameManager;
     [SerializeField] private BaulScene baulScene;
+    [SerializeField] private Puerta1Manager puerta1Manager;
     [SerializeField] private string tipoObjeto = "";
     [SerializeField] private MovimientoPersonaje movimientoPersonaje;
 
@@ -92,7 +94,7 @@ public class ZonaInteractuable : MonoBehaviour
             }
         }
 
-        // Si hay un PreGameScene, notificarle el clic primero
+        // Si hay un baulScene, notificarle el clic primero
         else if (baulScene != null)
         {
             if (objeto.Contains("baul"))
@@ -137,6 +139,13 @@ public class ZonaInteractuable : MonoBehaviour
                 }
                 Debug.Log("Clic en la oruga");
                 return;
+            }
+        }
+        else if (puerta1Manager == null)
+        {
+            if (objeto.Contains("puerta"))
+            {
+                SceneManager.LoadScene(2);
             }
         }
 

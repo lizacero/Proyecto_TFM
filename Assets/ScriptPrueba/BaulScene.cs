@@ -68,8 +68,16 @@ public class BaulScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(conversacionValor);
         ListaAyuda();
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+        }
     }
 
     private void CargarDatosJugador()
@@ -136,38 +144,60 @@ public class BaulScene : MonoBehaviour
 
     public void OnClicBaul()
     {
-        Debug.Log("Clic en baul");
+        
         if(etapaActual == EtapaGuion.WaitBaul)
         {
             conversacionValor++;
             //cambia animación baul abierto
             etapaActual = EtapaGuion.WaitPuerta1;
+            Debug.Log("Clic en baul");
         }
-        if (etapaActual == EtapaGuion.WaitPuerta1)
+        else if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             conversacionValor++;
+            Debug.Log("Clic en baul2");
         }
     }
 
     public void OnClicPuerta1()
     {
         Debug.Log("Clic en puerta 1");
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            SceneManager.LoadScene(3);
+        }
     }
     public void OnClicPuerta2()
     {
         Debug.Log("Clic en puerta 2");
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            SceneManager.LoadScene(4);
+        }
     }
     public void OnClicPuerta3()
     {
         Debug.Log("Clic en puerta 3");
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            SceneManager.LoadScene(5);
+        }
     }
     public void OnClicPuerta4()
     {
         Debug.Log("Clic en puerta 4");
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            SceneManager.LoadScene(6);
+        }
     }
     public void OnClicPuerta5()
     {
         Debug.Log("Clic en puerta 5");
+        if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            SceneManager.LoadScene(7);
+        }
     }
 
     private void ListaAyuda()
