@@ -3,6 +3,7 @@ using UnityEngine;
 public class OrugaManager : MonoBehaviour
 {
     [SerializeField] private BaulScene baulScene;
+    [SerializeField] private Animator anim;
 
     private void Awake()
     {
@@ -11,7 +12,10 @@ public class OrugaManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (BaulSceneState.TieneEstado)
+        {
+            anim.SetBool("Quieto",true);
+        }
     }
 
     // Update is called once per frame
@@ -19,7 +23,7 @@ public class OrugaManager : MonoBehaviour
     {
         
     }
-
+    // Se llama en el evento de la animación
     private void Saludo()
     {
         if (baulScene != null)

@@ -32,8 +32,10 @@ public class BaulScene : MonoBehaviour
     private const string KEY_NOMBRE = "NombreJugador";
     private int personajeSeleccionado = 0;
     private string nombreJugador = "";
-    private int conversacionValor=0;
+    private int conversacionValor = 0;
     private string[] conversacionTexto = new string[10];
+    private int guionValor = 0;
+    private string[] guionTexto = new string[10];
 
     private enum EtapaGuion
     {
@@ -43,6 +45,7 @@ public class BaulScene : MonoBehaviour
         WaitPuerta1
     }
 
+    private EtapaGuion etapaActual = EtapaGuion.Inicio;
 
     private void Awake()
     {
@@ -56,20 +59,20 @@ public class BaulScene : MonoBehaviour
         puerta5 = GameObject.Find("Puerta5");
         CargarDatosJugador();
         InicializarValores();
+        RestaurarEstado();
     }
 
-    private EtapaGuion etapaActual = EtapaGuion.Inicio;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        IniciarFadeIn();
+        IniciarFadeOut();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Debug.Log(conversacionValor);
+        Debug.Log("ConversacionValor: "+conversacionValor);
+        Debug.Log(etapaActual + ": " + (int)etapaActual);
         ListaAyuda();
+        ListaGuion();
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
@@ -112,40 +115,87 @@ public class BaulScene : MonoBehaviour
         puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
     }
 
-    // Referencia animación orugaManager.
+    private void RestaurarEstado()
+    {
+        if (!BaulSceneState.TieneEstado)
+        {
+            // Primera vez que entramos al baúl: estado inicial
+            etapaActual = EtapaGuion.Inicio;
+            conversacionValor = 0;
+            return;
+        }
+
+        // Restaurar valores básicos
+        conversacionValor = BaulSceneState.ConversacionValor;
+        etapaActual = (EtapaGuion)BaulSceneState.EtapaGuionInt;
+
+        if (personaje != null)
+        {
+            personaje.transform.position = BaulSceneState.PosicionPersonaje;
+        }
+
+        // Reconfigurar interacciones según la etapa
+        if (etapaActual == EtapaGuion.WaitInstrucciones)
+        {
+            oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+        }
+        else if (etapaActual == EtapaGuion.WaitBaul)
+        {
+            oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            baul.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+        }
+        else if (etapaActual == EtapaGuion.WaitPuerta1)
+        {
+            oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            baul.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+        }
+
+        Debug.Log($"[BaulScene] Estado restaurado. Etapa={etapaActual}, conversacionValor={conversacionValor}");
+
+    }
+    /// <summary>
+    /// Métodos que se llaman y mantienen el flujo de los estados
+    /// </summary>
     public void IniciarGuion()
     {
-        // Etapa 0
-        etapaActual = EtapaGuion.WaitInstrucciones;
-        textoGuion.text = "";
-        textoAyuda.text = conversacionTexto[0];
-        oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-    }
+        if (!BaulSceneState.TieneEstado)
+        {
+            // Etapa 0
+            etapaActual = EtapaGuion.WaitInstrucciones;
+            conversacionValor = 1;
+            guionValor = 0;
+            oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+        }
+        
 
+    }
     public void OnClicOruga()
     {
         if (etapaActual == EtapaGuion.WaitInstrucciones)
         {
             conversacionValor++;
-            
-            
-            if (conversacionValor == 2)
+
+
+            if (conversacionValor == 3)
             {
                 baul.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-                conversacionValor = 2;
+                conversacionValor = 3;
                 etapaActual = EtapaGuion.WaitBaul;
             }
         }
-        if (etapaActual == EtapaGuion.WaitPuerta1 || conversacionValor ==3)
+        if (etapaActual == EtapaGuion.WaitPuerta1 || conversacionValor == 4)
         {
             conversacionValor++;
         }
     }
-
     public void OnClicBaul()
     {
-        
-        if(etapaActual == EtapaGuion.WaitBaul)
+        if (etapaActual == EtapaGuion.WaitBaul)
         {
             conversacionValor++;
             //cambia animación baul abierto
@@ -158,12 +208,13 @@ public class BaulScene : MonoBehaviour
             Debug.Log("Clic en baul2");
         }
     }
-
     public void OnClicPuerta1()
     {
         Debug.Log("Clic en puerta 1");
+        Debug.Log(etapaActual);
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
+            GuardarEstado();
             SceneManager.LoadScene(3);
         }
     }
@@ -172,6 +223,7 @@ public class BaulScene : MonoBehaviour
         Debug.Log("Clic en puerta 2");
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
+            GuardarEstado();
             SceneManager.LoadScene(4);
         }
     }
@@ -180,6 +232,7 @@ public class BaulScene : MonoBehaviour
         Debug.Log("Clic en puerta 3");
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
+            GuardarEstado();
             SceneManager.LoadScene(5);
         }
     }
@@ -188,6 +241,7 @@ public class BaulScene : MonoBehaviour
         Debug.Log("Clic en puerta 4");
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
+            GuardarEstado();
             SceneManager.LoadScene(6);
         }
     }
@@ -196,6 +250,7 @@ public class BaulScene : MonoBehaviour
         Debug.Log("Clic en puerta 5");
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
+            GuardarEstado();
             SceneManager.LoadScene(7);
         }
     }
@@ -203,34 +258,52 @@ public class BaulScene : MonoBehaviour
     private void ListaAyuda()
     {
         textoAyuda.text = conversacionTexto[conversacionValor];
-        conversacionTexto[0] = "Hola " + nombreJugador + ". Soy Polipol y estoy aquí para guiarte. Haz clic sobre mi";
-        conversacionTexto[1] = "De esta manera siempre que te sientas sin rumbo, yo te ayudaré.";
-        conversacionTexto[2] = "Dale clic al baúl";
-        conversacionTexto[3] = "Este es el baul de los recuerdos.";
-        conversacionTexto[4] = "Detrás de cada puerta encontrarás una emoción diferente para enfrentar.";
-
+        conversacionTexto[0] = "";
+        conversacionTexto[1] = "Hola " + nombreJugador + ". Soy Papilio y estoy aquí para guiarte. Haz clic sobre mi";
+        conversacionTexto[2] = "De esta manera siempre que te sientas sin rumbo, yo te ayudaré.";
+        conversacionTexto[3] = "Dale clic al baúl";
+        conversacionTexto[4] = "Este es el baul de los recuerdos.";
+        conversacionTexto[5] = "Detrás de cada puerta encontrarás una emoción diferente.";
+        conversacionTexto[6] = "¿Cuál puerta quieres abrir?.";
     }
-    void IniciarFadeIn()
+    private void ListaGuion()
+    {
+        textoGuion.text = guionTexto[guionValor];
+        guionTexto[0] = "";
+    }
+
+    private void GuardarEstado()
+    {
+        if (personaje != null)
+        {
+            BaulSceneState.PosicionPersonaje = personaje.transform.position;
+        }
+
+        BaulSceneState.ConversacionValor = conversacionValor;
+        BaulSceneState.EtapaGuionInt = (int)etapaActual;
+        BaulSceneState.TieneEstado = true;
+
+        Debug.Log($"[BaulScene] Estado guardado. Etapa={etapaActual}, conversacionValor={conversacionValor}");
+    }
+
+    void IniciarFadeOut()
     {
         if (panelFade != null)
         {
             panelFade.SetActive(true);
             StopAllCoroutines();
-            StartCoroutine(FadeIn(() =>
+            StartCoroutine(FadeOut(() =>
             {
-                // Cambiar de escena
-                etapaActual = EtapaGuion.WaitBaul;
+                if (!BaulSceneState.TieneEstado)
+                {
+                    etapaActual = EtapaGuion.Inicio;
+                }
                 panelFade.SetActive(false);
             }));
         }
-        else
-        {
-            // Si no hay panel de fade, cambiar escena directamente
-            SceneManager.LoadScene(2);
-        }
     }
 
-    private IEnumerator FadeIn(System.Action onComplete = null)
+    private IEnumerator FadeOut(System.Action onComplete = null)
     {
         CanvasGroup fadeGroup = panelFade.GetComponent<CanvasGroup>();
         if (fadeGroup == null)

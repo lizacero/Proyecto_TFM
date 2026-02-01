@@ -1,7 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuGameplay : MonoBehaviour
 {
@@ -15,8 +17,13 @@ public class MenuGameplay : MonoBehaviour
     // Referencia al overlay/background del inventario para detectar clics fuera
     [SerializeField] private GameObject inventarioOverlay;
     [SerializeField] private GameObject ayudaOverlay;
+    [SerializeField] private TextMeshProUGUI textoInventario;
 
-    private bool isPausa = false;
+    [SerializeField] private Image[] slotsInventario;
+    [SerializeField] private List<ItemInventario> itemsInventario = new List<ItemInventario>();
+
+
+    private bool isPausa = false;   
     private bool isAjustes = false;
     private bool isGuardar = false;
     private bool isInventario = false;
@@ -27,10 +34,10 @@ public class MenuGameplay : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // CRÍTICO: Asegurar que Time.timeScale esté en 1 al iniciar la escena
+        // CRÃTICO: Asegurar que Time.timeScale estÃ© en 1 al iniciar la escena
         Time.timeScale = 1;
 
-        // Asegurar que todos los paneles estén desactivados al inicio
+        // Asegurar que todos los paneles estÃ©n desactivados al inicio
         InicializarPaneles();
 
         // Resetear todas las variables de estado
@@ -43,7 +50,7 @@ public class MenuGameplay : MonoBehaviour
         
     }
 
-    // Inicializa todos los paneles de UI desactivándolos al inicio
+    // Inicializa todos los paneles de UI desactivÃ¡ndolos al inicio
     private void InicializarPaneles()
     {
         if (pausa != null)
@@ -71,7 +78,7 @@ public class MenuGameplay : MonoBehaviour
             //ayuda.SetActive(false);
             ayuda.SetActive(true);
         }
-        // Desactivar el overlay del inventario también
+        // Desactivar el overlay del inventario tambiÃ©n
         if (inventarioOverlay != null)
         {
             inventarioOverlay.SetActive(false);
@@ -94,7 +101,7 @@ public class MenuGameplay : MonoBehaviour
         isSalir = false;
     }
 
-    // Botón
+    // BotÃ³n
     public void Pausa()
     {
         //activar pantalla pausa
@@ -107,7 +114,7 @@ public class MenuGameplay : MonoBehaviour
         isPausa = true;
     }
 
-    // Botón
+    // BotÃ³n
     public void Ajustes()
     {
         //activar pantalla ajustes
@@ -119,7 +126,7 @@ public class MenuGameplay : MonoBehaviour
         isAjustes = true;
 
     }
-    // Botón
+    // BotÃ³n
     public void Volver()
     {
         //advertencia guardar antes de?
@@ -132,11 +139,11 @@ public class MenuGameplay : MonoBehaviour
         isGuardar = true;
         if (textoGuardar != null)
         {
-            textoGuardar.text = "¿Desea Guardar antes de volver al inicio?";
+            textoGuardar.text = "Â¿Desea Guardar antes de volver al inicio?";
         }
 
     }
-    // Botón
+    // BotÃ³n
     public void Salir()
     {
         //advertencia pantalla guardar
@@ -149,10 +156,10 @@ public class MenuGameplay : MonoBehaviour
         isGuardar = true;
         if (textoGuardar != null)
         {
-            textoGuardar.text = "¿Desea Guardar antes de salir?";
+            textoGuardar.text = "Â¿Desea Guardar antes de salir?";
         }
     }
-    // Botón si
+    // BotÃ³n si
     public void Guardar()
     {
         //guardar partida 
@@ -162,7 +169,7 @@ public class MenuGameplay : MonoBehaviour
         //Desactivar botones
         Debug.Log("Guardando");
 
-        // CRÍTICO: Restaurar Time.timeScale antes de cargar la escena
+        // CRÃTICO: Restaurar Time.timeScale antes de cargar la escena
         Time.timeScale = 1;
 
         if (isVolver)
@@ -175,7 +182,7 @@ public class MenuGameplay : MonoBehaviour
             // Restaurar cursor del sistema antes de cambiar de escena
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            // No usar corrutina aquí, cargar directamente
+            // No usar corrutina aquÃ­, cargar directamente
             // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
         }
@@ -186,13 +193,13 @@ public class MenuGameplay : MonoBehaviour
             {
                 textoGuardar.text = "Guardando y saliendo";
             }
-            // No usar corrutina aquí, salir directamente
+            // No usar corrutina aquÃ­, salir directamente
             // StartCoroutine(Delay());
             Debug.Log("Saliendo");
             Application.Quit();
         }
     }
-    // Botón no
+    // BotÃ³n no
     public void No()
     {
         //if volver
@@ -200,7 +207,7 @@ public class MenuGameplay : MonoBehaviour
 
         //Desactivar botones
 
-        // CRÍTICO: Restaurar Time.timeScale antes de cargar la escena
+        // CRÃTICO: Restaurar Time.timeScale antes de cargar la escena
         Time.timeScale = 1;
 
         if (isVolver)
@@ -212,7 +219,7 @@ public class MenuGameplay : MonoBehaviour
             // Restaurar cursor del sistema antes de cambiar de escena
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            // No usar corrutina aquí, cargar directamente
+            // No usar corrutina aquÃ­, cargar directamente
             // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
         }
@@ -222,14 +229,14 @@ public class MenuGameplay : MonoBehaviour
             {
                 textoGuardar.text = "Saliendo";
             }
-            // No usar corrutina aquí, salir directamente
+            // No usar corrutina aquÃ­, salir directamente
             // StartCoroutine(Delay());
             Debug.Log("Saliendo");
             Application.Quit();
         }
     }
 
-    //botón
+    //botÃ³n
     public void Inventario()
     {
         //activa pantalla inventario
@@ -244,7 +251,75 @@ public class MenuGameplay : MonoBehaviour
         }
 
         isInventario = true;
+        ActualizarInventario();
     }
+
+    private Sprite ObtenerSprite(string nombreObjeto)
+    {
+        foreach (var item in itemsInventario)
+            if (item.nombreObjeto == nombreObjeto)
+                return item.sprite;
+        return null;
+    }
+
+    private void ActualizarInventario()
+    {
+        var objetos = InventarioManager.instance.ObtenerObjetos();
+
+        if (objetos.Count == 0)
+        {
+            textoInventario.text = "Inventario vacÃ­o";
+            foreach (var slot in slotsInventario)
+                if (slot != null) slot.gameObject.SetActive(false);
+            return;
+        }
+        else
+        {
+            textoInventario.gameObject.SetActive(false);
+        }
+
+        int i = 0;
+        foreach (string nombre in objetos)
+        {
+            if (i >= slotsInventario.Length) break;
+            var sprite = ObtenerSprite(nombre);
+            if (sprite != null && slotsInventario[i] != null)
+            {
+                slotsInventario[i].sprite = sprite;
+                slotsInventario[i].gameObject.SetActive(true);
+                i++;
+            }
+        }
+        for (; i < slotsInventario.Length; i++)
+            if (slotsInventario[i] != null)
+                slotsInventario[i].gameObject.SetActive(false);
+    }
+
+    //private void ActualizarInventario()
+    //{
+    //    // Obtener lista de objetos
+    //    var objetos = InventarioManager.instance.ObtenerObjetos();
+    //    int cantidad = InventarioManager.instance.CantidadObjetos();
+
+    //    // Si estÃ¡ vacÃ­o
+    //    if (cantidad == 0)
+    //    {
+    //        textoInventario.text = "Inventario vacÃ­o\n\nNo has recolectado ningÃºn objeto todavÃ­a.";
+    //        return;
+    //    }
+
+    //    // Construir texto con los objetos
+    //    string texto = "INVENTARIO\n\n";
+
+    //    foreach (string objeto in objetos)
+    //    {
+    //        // Formatear el nombre (primera letra en mayÃºscula)
+    //        string nombreFormateado = objeto.Substring(0, 1).ToUpper() + objeto.Substring(1).ToLower();
+    //        texto += $"Â• {nombreFormateado}\n";
+    //    }
+    //    textoInventario.text = texto;
+    //}
+
 
     // Cierra el inventario cuando se hace clic fuera del panel
     public void CerrarInventario()
@@ -253,7 +328,7 @@ public class MenuGameplay : MonoBehaviour
         {
             inventario.SetActive(false);
         }
-        // Desactivar el overlay también
+        // Desactivar el overlay tambiÃ©n
         if (inventarioOverlay != null)
         {
             inventarioOverlay.SetActive(false);
@@ -262,7 +337,7 @@ public class MenuGameplay : MonoBehaviour
         isInventario = false;
     }
 
-    //botón
+    //botÃ³n
     public void Ayuda()
     {
         //activa pantalla ayuda
@@ -292,7 +367,7 @@ public class MenuGameplay : MonoBehaviour
 
         isAyuda = false;
     }
-    //botón
+    //botÃ³n
     public void Cerrar()
     {
         Time.timeScale = 1;
@@ -353,9 +428,13 @@ public class MenuGameplay : MonoBehaviour
             }
         }
     }
-    //Delay
-    private IEnumerator Delay()
+
+    [System.Serializable]
+    public class ItemInventario
     {
-        yield return new WaitForSeconds(5);
+        public string nombreObjeto;
+        public Sprite sprite;
     }
+
+
 }

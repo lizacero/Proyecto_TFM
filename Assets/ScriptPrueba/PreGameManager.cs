@@ -59,9 +59,9 @@ public class PreGameManager : MonoBehaviour
     }
 
     private EtapaGuion etapaActual = EtapaGuion.Inicio;
-    private bool ventanaCerrada = false;
-    private bool papelVisible = false;
-    private bool personajeEnCama = false;
+    //private bool ventanaCerrada = false;
+    //private bool papelVisible = false;
+    //private bool personajeEnCama = false;
     private bool finEspera = false;
 
 
@@ -339,13 +339,5 @@ public class PreGameManager : MonoBehaviour
         yield return new WaitForSeconds(tiempo);
         finEspera = true;
 
-    }
-
-    private IEnumerator EsperarMovimiento()
-    {
-        while (movimientoPersonaje.estaMoviendose)
-        {
-            yield return null;
-        }
     }
 }

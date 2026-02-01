@@ -9,6 +9,10 @@ public class ZonaInteractuable : MonoBehaviour
     [SerializeField] private PreGameManager preGameManager;
     [SerializeField] private BaulScene baulScene;
     [SerializeField] private Puerta1Manager puerta1Manager;
+    [SerializeField] private Puerta2Manager puerta2Manager;
+    [SerializeField] private Puerta3Manager puerta3Manager;
+    [SerializeField] private Puerta4Manager puerta4Manager;
+    [SerializeField] private Puerta5Manager puerta5Manager;
     [SerializeField] private string tipoObjeto = "";
     [SerializeField] private MovimientoPersonaje movimientoPersonaje;
 
@@ -20,6 +24,11 @@ public class ZonaInteractuable : MonoBehaviour
         preGameManager = FindAnyObjectByType<PreGameManager>();
         baulScene = FindAnyObjectByType<BaulScene>();
         movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
+        puerta1Manager = FindAnyObjectByType<Puerta1Manager>();
+        puerta2Manager = FindAnyObjectByType<Puerta2Manager>();
+        puerta3Manager = FindAnyObjectByType<Puerta3Manager>();
+        puerta4Manager = FindAnyObjectByType<Puerta4Manager>();
+        puerta5Manager = FindAnyObjectByType<Puerta5Manager>();
     }
 
     // Permite activar/desactivar interacciones desde fuera
@@ -45,7 +54,6 @@ public class ZonaInteractuable : MonoBehaviour
             controlCursor.CambiarCursor("Normal");
         }
     }
-
 
     /// Se ejecuta cuando se hace clic en el objeto
     private void OnMouseDown()
@@ -141,17 +149,66 @@ public class ZonaInteractuable : MonoBehaviour
                 return;
             }
         }
-        else if (puerta1Manager == null)
+        else if (puerta1Manager != null)
         {
             if (objeto.Contains("puerta"))
             {
                 SceneManager.LoadScene(2);
             }
+            if (objeto.Contains("fragmento1"))
+            {
+                puerta1Manager.OnClicFragmento();
+                return;
+            }
         }
-
-
+        else if (puerta2Manager != null)
+        {
+            if (objeto.Contains("puerta"))
+            {
+                SceneManager.LoadScene(2);
+            }
+            if (objeto.Contains("fragmento2"))
+            {
+                puerta2Manager.OnClicFragmento();
+                return;
+            }
+        }
+        else if (puerta3Manager != null)
+        {
+            if (objeto.Contains("puerta"))
+            {
+                SceneManager.LoadScene(2);
+            }
+            if (objeto.Contains("fragmento3"))
+            {
+                puerta3Manager.OnClicFragmento();
+                return;
+            }
+        }
+        else if (puerta4Manager != null)
+        {
+            if (objeto.Contains("puerta"))
+            {
+                SceneManager.LoadScene(2);
+            }
+            if ( objeto.Contains("fragmento4"))
+            {
+                puerta4Manager.OnClicFragmento();
+                return;
+            }
+        }
+        else if (puerta5Manager != null)
+        {
+            if (objeto.Contains("puerta"))
+            {
+                SceneManager.LoadScene(2);
+            }
+            if (objeto.Contains("fragmento5"))
+            {
+                puerta5Manager.OnClicFragmento();
+                return;
+            }
+        }
     }
-
-    
 
 }

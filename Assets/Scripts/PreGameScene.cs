@@ -48,9 +48,9 @@ public class PreGameScene : MonoBehaviour
     }
 
     private EtapaGuion etapaActual = EtapaGuion.Inicio;
-    private bool ventanaCerrada = false;
-    private bool papelVisible = false;
-    private bool personajeEnCama = false;
+    //private bool ventanaCerrada = false;
+    //private bool papelVisible = false;
+    //private bool personajeEnCama = false;
     private Coroutine corrutinaZoom;
     private Coroutine corrutinaEspera;
 
@@ -155,7 +155,7 @@ public class PreGameScene : MonoBehaviour
         if (etapaActual == EtapaGuion.EsperandoClicCama)
         {
             // Estado personaje: en cama
-            personajeEnCama = true;
+            //personajeEnCama = true;
             // Aquí puedes cambiar el sprite del personaje o animación si lo necesitas
 
             // Iniciar fade out
@@ -194,7 +194,7 @@ public class PreGameScene : MonoBehaviour
             corrutinaZoom = StartCoroutine(ZoomCamara(tamanoZoomOut, posicionOriginal, () =>
             {
                 // Ventana cerrada
-                ventanaCerrada = true;
+                //ventanaCerrada = true;
                 // Aquí puedes cambiar el sprite de la ventana si lo necesitas
 
                 MostrarTexto("Ventana cerrada");
@@ -203,7 +203,7 @@ public class PreGameScene : MonoBehaviour
                 if (papel != null)
                 {
                     papel.SetActive(true);
-                    papelVisible = true;
+                    //papelVisible = true;
                 }
 
                 StartCoroutine(EsperarYContinuar(1f, () =>
