@@ -17,4 +17,7 @@ public static class BaulSceneState
 
     // Etapa actual del guion (guardada como int)
     public static int EtapaGuionInt;
+
+    // Fragmentos depositados en el baúl (0 a 5)
+    public static int FragmentosGuardadosEnBaul = 0;
 }

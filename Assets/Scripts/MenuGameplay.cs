@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MenuGameplay : MonoBehaviour
 {
+    public static MenuGameplay instance;
     [SerializeField] private GameObject pausa;
     [SerializeField] private GameObject ajustes;
     [SerializeField] private GameObject guardar;
@@ -30,6 +31,11 @@ public class MenuGameplay : MonoBehaviour
     private bool isAyuda = false;
     private bool isVolver = false;
     private bool isSalir = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -262,13 +268,14 @@ public class MenuGameplay : MonoBehaviour
         return null;
     }
 
-    private void ActualizarInventario()
+    public void ActualizarInventario()
     {
         var objetos = InventarioManager.instance.ObtenerObjetos();
 
         if (objetos.Count == 0)
         {
             textoInventario.text = "Inventario vacío";
+            if (textoInventario != null) textoInventario.gameObject.SetActive(true);
             foreach (var slot in slotsInventario)
                 if (slot != null) slot.gameObject.SetActive(false);
             return;
@@ -287,6 +294,10 @@ public class MenuGameplay : MonoBehaviour
             {
                 slotsInventario[i].sprite = sprite;
                 slotsInventario[i].gameObject.SetActive(true);
+                var arrastrable = slotsInventario[i].GetComponent<FragmentoArrastrable>();
+                if (arrastrable == null)
+                    arrastrable = slotsInventario[i].gameObject.AddComponent<FragmentoArrastrable>();
+                arrastrable.nombreObjeto = nombre;
                 i++;
             }
         }
@@ -294,32 +305,6 @@ public class MenuGameplay : MonoBehaviour
             if (slotsInventario[i] != null)
                 slotsInventario[i].gameObject.SetActive(false);
     }
-
-    //private void ActualizarInventario()
-    //{
-    //    // Obtener lista de objetos
-    //    var objetos = InventarioManager.instance.ObtenerObjetos();
-    //    int cantidad = InventarioManager.instance.CantidadObjetos();
-
-    //    // Si está vacío
-    //    if (cantidad == 0)
-    //    {
-    //        textoInventario.text = "Inventario vacío\n\nNo has recolectado ningún objeto todavía.";
-    //        return;
-    //    }
-
-    //    // Construir texto con los objetos
-    //    string texto = "INVENTARIO\n\n";
-
-    //    foreach (string objeto in objetos)
-    //    {
-    //        // Formatear el nombre (primera letra en mayúscula)
-    //        string nombreFormateado = objeto.Substring(0, 1).ToUpper() + objeto.Substring(1).ToLower();
-    //        texto += $" {nombreFormateado}\n";
-    //    }
-    //    textoInventario.text = texto;
-    //}
-
 
     // Cierra el inventario cuando se hace clic fuera del panel
     public void CerrarInventario()

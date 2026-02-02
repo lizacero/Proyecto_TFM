@@ -70,6 +70,18 @@ public class InventarioManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Quita un objeto del inventario (para depositarlo en el baúl)
+    /// </summary>
+    public bool QuitarObjeto(string nombreObjeto)
+    {
+        if (objetosRecolectados == null) return false;
+        bool removido = objetosRecolectados.Remove(nombreObjeto);
+        if (removido)
+            Debug.Log($"[Inventario] Objeto '{nombreObjeto}' removido.");
+        return removido;
+    }
+
+    /// <summary>
     /// Limpia todo el inventario (útil para "Nuevo Juego")
     /// </summary>
     public void LimpiarInventario()

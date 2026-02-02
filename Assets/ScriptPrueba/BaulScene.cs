@@ -268,6 +268,17 @@ public class BaulScene : MonoBehaviour
     }
     private void ListaGuion()
     {
+        // Si hay fragmentos depositados, priorizar ese mensaje
+        if (BaulSceneState.FragmentosGuardadosEnBaul > 0)
+        {
+            int g = BaulSceneState.FragmentosGuardadosEnBaul;
+            int f = 5 - g;
+            if (g >= 5)
+                textoGuion.text = "Todos los fragmentos han sido recolectados.";
+            else
+                textoGuion.text = $"{g} fragmento(s) guardado(s), faltan {f}.";
+            return;
+        }
         textoGuion.text = guionTexto[guionValor];
         guionTexto[0] = "";
     }
