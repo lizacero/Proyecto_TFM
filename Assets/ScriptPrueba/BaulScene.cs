@@ -8,7 +8,6 @@ public class BaulScene : MonoBehaviour
     [Header("Referencias UI")]
     [SerializeField] private TextMeshProUGUI textoAyuda;
     [SerializeField] private TextMeshProUGUI textoGuion;
-    [SerializeField] private GameObject pantallaFinal;
 
     [Header("Referencias Fade")]
     [SerializeField] private GameObject panelFade;
@@ -286,8 +285,7 @@ public class BaulScene : MonoBehaviour
 
     public void MostrarPantallaFinal()
     {
-        if (pantallaFinal != null)
-            pantallaFinal.SetActive(true);
+        SceneManager.LoadScene(8);
     }
 
     private void GuardarEstado()
