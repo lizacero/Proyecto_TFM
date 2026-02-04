@@ -29,18 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puerta5.unity
     guid: 72d6a36812df8c74ab1a06cd4ab1c73a
-  - enabled: 0
-    path: Assets/Scenes/Puerta1.2.unity
-    guid: 459b0937159426c46b38bb9dae414182
-  - enabled: 0
-    path: Assets/Scenes/Puerta1.3.unity
-    guid: 06cc621887f1cd5419c299350460675e
-  - enabled: 0
-    path: Assets/Scenes/Puerta1.4.unity
-    guid: 38b32c5afcf70ed4f85f3ffd4f97dea0
-  - enabled: 0
-    path: Assets/Scenes/Puerta1.5.unity
-    guid: 5bffe82358f602f4fa4b5bd086c42ec4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

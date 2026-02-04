@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class BaulDropZone : MonoBehaviour, IDropHandler
 {
     [SerializeField] private TextMeshProUGUI textoGuion;
+    [SerializeField] private BaulScene baulScene;
 
     private const int TOTAL_FRAGMENTOS = 5;
 
@@ -29,6 +30,11 @@ public class BaulDropZone : MonoBehaviour, IDropHandler
 
         ActualizarTexto();
         MenuGameplay.instance.ActualizarInventario(); // Llamar al método público
+        if (BaulSceneState.FragmentosGuardadosEnBaul >= TOTAL_FRAGMENTOS)
+        {
+            if (baulScene != null)
+                baulScene.MostrarPantallaFinal();
+        }
     }
 
     private void ActualizarTexto()
@@ -43,4 +49,5 @@ public class BaulDropZone : MonoBehaviour, IDropHandler
         else
             textoGuion.text = $"{guardados} fragmento(s) guardado(s), faltan {faltan}.";
     }
+
 }

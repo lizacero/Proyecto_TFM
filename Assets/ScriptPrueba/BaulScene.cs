@@ -8,6 +8,7 @@ public class BaulScene : MonoBehaviour
     [Header("Referencias UI")]
     [SerializeField] private TextMeshProUGUI textoAyuda;
     [SerializeField] private TextMeshProUGUI textoGuion;
+    [SerializeField] private GameObject pantallaFinal;
 
     [Header("Referencias Fade")]
     [SerializeField] private GameObject panelFade;
@@ -281,6 +282,12 @@ public class BaulScene : MonoBehaviour
         }
         textoGuion.text = guionTexto[guionValor];
         guionTexto[0] = "";
+    }
+
+    public void MostrarPantallaFinal()
+    {
+        if (pantallaFinal != null)
+            pantallaFinal.SetActive(true);
     }
 
     private void GuardarEstado()

@@ -160,6 +160,26 @@ public class ZonaInteractuable : MonoBehaviour
                 puerta1Manager.OnClicFragmento();
                 return;
             }
+            if (objeto.Contains("mueble"))
+            {
+                puerta1Manager.OnClicMueble();
+            }
+            if (objeto.Contains("interruptor"))
+            {
+                puerta1Manager.OnClicInterruptor("Interruptor", this.gameObject);
+            }
+            if (objeto.Contains("icolocado"))
+            {
+                puerta1Manager.OnClicInterruptorColocado();
+            }
+            if (objeto.Contains("tablero"))
+            {
+                puerta1Manager.EntrarPuzzle2();
+            }
+            if (objeto.Contains("volver"))
+            {
+                puerta1Manager.SalirPuzzle2();
+            }
         }
         else if (puerta2Manager != null)
         {
