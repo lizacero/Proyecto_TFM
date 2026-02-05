@@ -18,7 +18,7 @@ public class BaulDropZone : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag == null) return;
 
-        var arrastrable = eventData.pointerDrag.GetComponent<FragmentoArrastrable>();
+        var arrastrable = eventData.pointerDrag.GetComponent<ObjetoInventarioArrastrable>();
         if (arrastrable == null) return;
 
         string nombre = arrastrable.nombreObjeto;

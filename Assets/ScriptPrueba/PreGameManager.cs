@@ -33,10 +33,6 @@ public class PreGameManager : MonoBehaviour
     [Header("Referencias Cámara")]
     [SerializeField] private Camera camaraPrincipal;
 
-    [Header("Configuración Fade")]
-    [SerializeField] private GameObject panelFade; // Panel UI para el fade out (Image con color negro)
-    [SerializeField] private float duracionFade = 5f;
-
     [Header("Referencias personaje")]
     // Claves para PlayerPrefs (deben coincidir con las de NuevoJuegoManager)
     private const string KEY_PERSONAJE = "PersonajeSeleccionado";
@@ -132,16 +128,6 @@ public class PreGameManager : MonoBehaviour
         if (camaraPrincipal == null)
             camaraPrincipal = Camera.main;
 
-        if (panelFade != null)
-        {
-            panelFade.SetActive(false);
-            CanvasGroup fadeGroup = panelFade.GetComponent<CanvasGroup>();
-            if (fadeGroup == null)
-            {
-                fadeGroup = panelFade.AddComponent<CanvasGroup>();
-            }
-            fadeGroup.alpha = 0f;
-        }
 
         // Ocultar objetos iniciales
         if (papel != null)
@@ -277,7 +263,11 @@ public class PreGameManager : MonoBehaviour
         {
             textoGuion.text = "Hora de dormir";
             textoAyuda.text = "";
-            IniciarFadeOut();
+            //IniciarFadeOut();
+            if (SceneTransitionManager.instance != null)
+                SceneTransitionManager.instance.LoadSceneConFade(2);
+            else
+                SceneManager.LoadScene(2);
         }
     }
 
@@ -293,45 +283,6 @@ public class PreGameManager : MonoBehaviour
             textoAyuda.text = "Haz clic en la cama";
             
         }
-    }
-
-
-    void IniciarFadeOut()
-    {
-        if (panelFade != null)
-        {
-            panelFade.SetActive(true);
-            StopAllCoroutines();
-            StartCoroutine(FadeOut(() =>
-            {
-                // Cambiar de escena
-                etapaActual = EtapaGuion.CambioEscena;
-                SceneManager.LoadScene(2);
-            }));
-        }
-        else
-        {
-            // Si no hay panel de fade, cambiar escena directamente
-            SceneManager.LoadScene(2);
-        }
-    }
-
-    private IEnumerator FadeOut(System.Action onComplete = null)
-    {
-        CanvasGroup fadeGroup = panelFade.GetComponent<CanvasGroup>();
-        if (fadeGroup == null)
-            fadeGroup = panelFade.AddComponent<CanvasGroup>();
-
-        float tiempo = 0f;
-        while (tiempo < duracionFade)
-        {
-            tiempo += Time.deltaTime;
-            fadeGroup.alpha = Mathf.Lerp(0f, 1f, tiempo / duracionFade);
-            yield return null;
-        }
-
-        fadeGroup.alpha = 1f;
-        onComplete?.Invoke();
     }
 
     private IEnumerator EsperarYContinuar(float tiempo)

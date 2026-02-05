@@ -75,11 +75,26 @@ public class BaulScene : MonoBehaviour
         ListaGuion();
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
-            puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta1abierta)
+                puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta2abierta)
+                puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta3abierta)
+                puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta4abierta)
+                puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta5abierta)
+                puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
         }
     }
 
@@ -148,11 +163,27 @@ public class BaulScene : MonoBehaviour
         {
             oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
             baul.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-            puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+
+            if (BaulSceneState.Puerta1abierta)
+                puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta1.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta2abierta)
+                puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta2.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta3abierta)
+                puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta3.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta4abierta)
+                puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta4.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            if (BaulSceneState.Puerta5abierta)
+                puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
+            else
+                puerta5.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
         }
 
         Debug.Log($"[BaulScene] Estado restaurado. Etapa={etapaActual}, conversacionValor={conversacionValor}");
@@ -212,46 +243,71 @@ public class BaulScene : MonoBehaviour
     {
         Debug.Log("Clic en puerta 1");
         Debug.Log(etapaActual);
+        BaulSceneState.Puerta1abierta = true;
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             GuardarEstado();
-            SceneManager.LoadScene(3);
+            //SceneManager.LoadScene(3);
+            if (SceneTransitionManager.instance != null)
+                SceneTransitionManager.instance.LoadSceneConFade(3);
+            else
+                SceneManager.LoadScene(3);
         }
     }
     public void OnClicPuerta2()
     {
         Debug.Log("Clic en puerta 2");
+        BaulSceneState.Puerta2abierta = true;
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             GuardarEstado();
-            SceneManager.LoadScene(4);
+            //SceneManager.LoadScene(4);
+            if (SceneTransitionManager.instance != null)
+                SceneTransitionManager.instance.LoadSceneConFade(4);
+            else
+                SceneManager.LoadScene(4);
         }
     }
     public void OnClicPuerta3()
     {
         Debug.Log("Clic en puerta 3");
+        BaulSceneState.Puerta3abierta = true;
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             GuardarEstado();
-            SceneManager.LoadScene(5);
+            //SceneManager.LoadScene(5);
+            if (SceneTransitionManager.instance != null)
+                SceneTransitionManager.instance.LoadSceneConFade(5);
+            else
+                SceneManager.LoadScene(5);
         }
     }
     public void OnClicPuerta4()
     {
         Debug.Log("Clic en puerta 4");
+        BaulSceneState.Puerta4abierta = true;
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             GuardarEstado();
-            SceneManager.LoadScene(6);
+            //SceneManager.LoadScene(6);
+            if (SceneTransitionManager.instance != null)
+                SceneTransitionManager.instance.LoadSceneConFade(6);
+            else
+                SceneManager.LoadScene(6);
         }
     }
     public void OnClicPuerta5()
     {
         Debug.Log("Clic en puerta 5");
+        BaulSceneState.Puerta5abierta = true;
         if (etapaActual == EtapaGuion.WaitPuerta1)
         {
             GuardarEstado();
-            SceneManager.LoadScene(7);
+            //SceneManager.LoadScene(7);
+            if (SceneTransitionManager.instance != null)
+                SceneTransitionManager.instance.LoadSceneConFade(7);
+            else
+                SceneManager.LoadScene(7);
         }
     }
 
@@ -285,7 +341,11 @@ public class BaulScene : MonoBehaviour
 
     public void MostrarPantallaFinal()
     {
-        SceneManager.LoadScene(8);
+        //SceneManager.LoadScene(8);
+        if (SceneTransitionManager.instance != null)
+            SceneTransitionManager.instance.LoadSceneConFade(8);
+        else
+            SceneManager.LoadScene(8);
     }
 
     private void GuardarEstado()

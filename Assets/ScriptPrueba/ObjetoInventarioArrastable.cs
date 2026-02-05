@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Permite arrastrar un fragmento desde el inventario.
-/// Debe ir en cada Image que representa un slot de fragmento.
+/// Permite arrastrar un objeto desde el inventario.
+/// Debe ir en cada Image que representa un slot.
 /// </summary>
-public class FragmentoArrastrable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ObjetoInventarioArrastrable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public string nombreObjeto;  // "Fragmento1", "Fragmento2", etc.
 
@@ -14,6 +14,9 @@ public class FragmentoArrastrable : MonoBehaviour, IBeginDragHandler, IDragHandl
     private Canvas canvas;
     private CanvasGroup canvasGroup;
     private Transform parentOriginal;
+
+    //Propiedad pública para acceder al parent original
+    public Transform ParentOriginal => parentOriginal;
 
     void Awake()
     {
@@ -39,8 +42,21 @@ public class FragmentoArrastrable : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.SetParent(parentOriginal);
+        if (transform.parent != parentOriginal && parentOriginal != null)
+        {
+            transform.SetParent(parentOriginal);
+        }
         if (canvasGroup != null)
             canvasGroup.blocksRaycasts = true;
+    }
+
+    public void RestaurarParent()
+    {
+        if (parentOriginal != null)
+        {
+            transform.SetParent(parentOriginal);
+            if (canvasGroup != null)
+                canvasGroup.blocksRaycasts = true;
+        }
     }
 }

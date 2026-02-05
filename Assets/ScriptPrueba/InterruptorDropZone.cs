@@ -12,17 +12,19 @@ public class InterruptorDropZone : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag == null) return;
 
-        var arrastrable = eventData.pointerDrag.GetComponent<FragmentoArrastrable>();
+        var arrastrable = eventData.pointerDrag.GetComponent<ObjetoInventarioArrastrable>();
         if (arrastrable == null) return;
 
         string nombre = arrastrable.nombreObjeto;
-        //if (string.IsNullOrEmpty(nombre) || !nombre.StartsWith("Interruptor")) return;
         if (!InventarioManager.instance.TieneObjeto(nombre)) return;
 
-        // Opcional: si quieres que solo el Interruptor1 vaya en esta ranura, descomenta:
-        // if (nombre != interruptorEsperado) return;
-
         InventarioManager.instance.QuitarObjeto(nombre);
+        arrastrable.nombreObjeto = "";
+
+        arrastrable.RestaurarParent();
+        arrastrable.gameObject.SetActive(false);
+
+        //Destroy(arrastrable.gameObject);
         if (interruptorColocadoVisual != null) interruptorColocadoVisual.SetActive(true);
 
         var menu = MenuGameplay.instance ?? Object.FindAnyObjectByType<MenuGameplay>();

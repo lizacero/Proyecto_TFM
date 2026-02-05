@@ -40,7 +40,11 @@ public class MenuInicio : MonoBehaviour
             if (nuevoJuegoManager.GuardarDatosYValidar())
             {
                 // Si todo está bien, cargar la escena de gameplay
-                SceneManager.LoadScene(1);
+                //SceneManager.LoadScene(1);
+                if (SceneTransitionManager.instance != null)
+                    SceneTransitionManager.instance.LoadSceneConFade(1);
+                else
+                    SceneManager.LoadScene(1);
             }
             else
             {

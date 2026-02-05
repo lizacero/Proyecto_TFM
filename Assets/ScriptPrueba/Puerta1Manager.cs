@@ -22,6 +22,7 @@ public class Puerta1Manager : MonoBehaviour
     [Header("Puzzle 1 - Objetos")]
     [SerializeField] private GameObject[] interruptoresEnEscena;  // Los que aparecen en Busqueda
     [SerializeField] private GameObject interruptor;
+    [SerializeField] private GameObject zonaInterruptor;
     [SerializeField] private GameObject luz;                      // Se activa en Luz
     [SerializeField] private GameObject tablero;                 // Aparece cuando hay luz (puzzle 2)
     [SerializeField] private TextMeshProUGUI textoGuion;
@@ -45,12 +46,15 @@ public class Puerta1Manager : MonoBehaviour
 
     [Header("Puzzle 3 - Objetos")]
     [SerializeField] private GameObject fragmento1;
+    [SerializeField] private GameObject puerta;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interruptor.SetActive(false);
         fragmento1.SetActive(true);
+        puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
         escena1Habitacion.SetActive(true);
         escena2Tablero.SetActive(false);
         escena3salida.SetActive(false);
@@ -72,30 +76,6 @@ public class Puerta1Manager : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Se llama cuando se hace clic en el Fragmento
-    /// </summary>
-    public void OnClicFragmento()
-    {
-        // Verificar si ya está en el inventario
-        if (InventarioManager.instance.TieneObjeto("Fragmento1"))
-        {
-            Debug.Log("[Puerta1] Ya tienes el Fragmento en el inventario.");
-            return;
-        }
-
-        // Agregar al inventario
-        else if (InventarioManager.instance.AgregarObjeto("Fragmento1"))
-        {
-            Debug.Log("[Puerta1] Fragmento recolectado y agregado al inventario.");
-
-            // Ocultar el objeto en la escena
-            if (fragmento1 != null)
-            {
-                fragmento1.SetActive(false);
-            }
-        }
-    }
     /// <summary>
     /// Llamado desde ZonaInteractuable al hacer clic en muebles/objetos en etapa Inicio.
     /// </summary>
@@ -144,7 +124,10 @@ public class Puerta1Manager : MonoBehaviour
         interruptoresColocados++;
         if (textoGuion != null) textoGuion.text = $"{interruptoresColocados} interruptor(es) colocado(s).";
         if (interruptoresColocados >= totalInterruptoresParaColocar)
+        {
             etapaPuzzle1 = EtapaPuzzle1.Luz;
+            Destroy(zonaInterruptor);
+        }
     }
     public void OnClicInterruptorColocado()
     {
@@ -182,5 +165,30 @@ public class Puerta1Manager : MonoBehaviour
             volver.SetActive(true);
         }
 
+    }
+    /// <summary>
+    /// Se llama cuando se hace clic en el Fragmento
+    /// </summary>
+    public void OnClicFragmento()
+    {
+        puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+        // Verificar si ya está en el inventario
+        if (InventarioManager.instance.TieneObjeto("Fragmento1"))
+        {
+            Debug.Log("[Puerta1] Ya tienes el Fragmento en el inventario.");
+            return;
+        }
+
+        // Agregar al inventario
+        else if (InventarioManager.instance.AgregarObjeto("Fragmento1"))
+        {
+            Debug.Log("[Puerta1] Fragmento recolectado y agregado al inventario.");
+
+            // Ocultar el objeto en la escena
+            if (fragmento1 != null)
+            {
+                fragmento1.SetActive(false);
+            }
+        }
     }
 }

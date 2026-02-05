@@ -20,4 +20,10 @@ public static class BaulSceneState
 
     // Fragmentos depositados en el baúl (0 a 5)
     public static int FragmentosGuardadosEnBaul = 0;
+
+    public static bool Puerta1abierta = false;
+    public static bool Puerta2abierta = false;
+    public static bool Puerta3abierta = false;
+    public static bool Puerta4abierta = false;
+    public static bool Puerta5abierta = false;
 }

@@ -277,7 +277,15 @@ public class MenuGameplay : MonoBehaviour
             textoInventario.text = "Inventario vacío";
             if (textoInventario != null) textoInventario.gameObject.SetActive(true);
             foreach (var slot in slotsInventario)
-                if (slot != null) slot.gameObject.SetActive(false);
+            {
+                if (slot != null)
+                {
+                    var arrastrable = slot.GetComponent<ObjetoInventarioArrastrable>();
+                    if (arrastrable != null)
+                        arrastrable.nombreObjeto = "";
+                    slot.gameObject.SetActive(false);
+                }
+            }
             return;
         }
         else
@@ -294,16 +302,23 @@ public class MenuGameplay : MonoBehaviour
             {
                 slotsInventario[i].sprite = sprite;
                 slotsInventario[i].gameObject.SetActive(true);
-                var arrastrable = slotsInventario[i].GetComponent<FragmentoArrastrable>();
+                var arrastrable = slotsInventario[i].GetComponent<ObjetoInventarioArrastrable>();
                 if (arrastrable == null)
-                    arrastrable = slotsInventario[i].gameObject.AddComponent<FragmentoArrastrable>();
+                    arrastrable = slotsInventario[i].gameObject.AddComponent<ObjetoInventarioArrastrable>();
                 arrastrable.nombreObjeto = nombre;
                 i++;
             }
         }
         for (; i < slotsInventario.Length; i++)
+        {
             if (slotsInventario[i] != null)
+            {
+                var arrastrable = slotsInventario[i].GetComponent<ObjetoInventarioArrastrable>();
+                if (arrastrable != null)
+                    arrastrable.nombreObjeto = "";  // Limpiar el nombre
                 slotsInventario[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     // Cierra el inventario cuando se hace clic fuera del panel

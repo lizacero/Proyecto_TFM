@@ -4,10 +4,12 @@ public class Puerta2Manager : MonoBehaviour
 {
     [Header("Referencias Objetos")]
     [SerializeField] private GameObject fragmento2;
+    [SerializeField] private GameObject puerta;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
         // Si ya tenemos el Fragmento en el inventario, ocultarlo
         if (InventarioManager.instance.TieneObjeto("Fragmento2"))
         {
@@ -29,6 +31,7 @@ public class Puerta2Manager : MonoBehaviour
     /// </summary>
     public void OnClicFragmento()
     {
+        puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
         // Verificar si ya está en el inventario
         if (InventarioManager.instance.TieneObjeto("Fragmento2"))
         {

@@ -17,7 +17,7 @@ public class Creditos : MonoBehaviour
     {
         
     }
-
+    //Se llama al terminar la animación de los créditos
     private void ActivarBotones()
     {
         btnMenu.SetActive(true);
