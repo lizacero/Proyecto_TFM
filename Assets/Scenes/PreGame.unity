@@ -14631,6 +14631,7 @@ GameObject:
   - component: {fileID: 7996660621864025293}
   - component: {fileID: 195731936931626945}
   - component: {fileID: 2184312839043839605}
+  - component: {fileID: 7996660621864025294}
   m_Layer: 5
   m_Name: VolMusica
   m_TagString: Untagged
@@ -15184,6 +15185,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingsOptionHover
   descriptionManager: {fileID: 1683900824494431821}
   descripcionKey: VolMusica
+--- !u!114 &7996660621864025294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7542786810822944999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb91f866612e154f9cfb5bd9d94849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMusicControl
+  slider: {fileID: 2875266264744509739}
 --- !u!224 &8004951163940534088
 RectTransform:
   m_ObjectHideFlags: 0

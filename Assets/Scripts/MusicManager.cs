@@ -36,6 +36,12 @@ public class MusicManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    void Start()
+    {
+        float volumen = PlayerPrefs.GetFloat("VolMusica", 0.7f);
+        SetVolumen(volumen);
+    }
+
     void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -71,9 +77,9 @@ public class MusicManager : MonoBehaviour
     /// <summary>
     /// Para que el slider de ajustes controle el volumen.
     /// </summary>
-//    public void SetVolumen(float volumen)
-//    {
-//        if (audioSource != null)
-//            audioSource.volume = Mathf.Clamp01(volumen);
-//    }
+    public void SetVolumen(float volumen)
+    {
+        if (audioSource != null)
+            audioSource.volume = Mathf.Clamp01(volumen);
+    }
 }

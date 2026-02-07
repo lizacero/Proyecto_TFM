@@ -9,16 +9,6 @@ public class MenuInicio : MonoBehaviour
 
     // Referencia al manager de nuevo juego para validar antes de jugar
     [SerializeField] private NuevoJuegoManager nuevoJuegoManager;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void NuevoJuego()
     {

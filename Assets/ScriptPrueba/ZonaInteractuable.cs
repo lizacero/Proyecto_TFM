@@ -180,6 +180,19 @@ public class ZonaInteractuable : MonoBehaviour
             {
                 puerta1Manager.SalirPuzzle2();
             }
+            if (objeto.Contains("oruga"))
+            {
+                puerta2Manager.OnClicOruga();
+                MovimientoPersonaje movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
+                if (movimientoPersonaje != null)
+                {
+                    movimientoPersonaje.SetMovimientoHabilitado(false);
+                    // Rehabilitar el movimiento al final del frame (después de que se procese el clic)
+                    StartCoroutine(movimientoPersonaje.RehabilitarMovimiento());
+                }
+                Debug.Log("Clic en la oruga");
+                return;
+            }
         }
         else if (puerta2Manager != null)
         {
@@ -190,6 +203,19 @@ public class ZonaInteractuable : MonoBehaviour
             if (objeto.Contains("fragmento2"))
             {
                 puerta2Manager.OnClicFragmento();
+                return;
+            }
+            if (objeto.Contains("oruga"))
+            {
+                puerta2Manager.OnClicOruga();
+                MovimientoPersonaje movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
+                if (movimientoPersonaje != null)
+                {
+                    movimientoPersonaje.SetMovimientoHabilitado(false);
+                    // Rehabilitar el movimiento al final del frame (después de que se procese el clic)
+                    StartCoroutine(movimientoPersonaje.RehabilitarMovimiento());
+                }
+                Debug.Log("Clic en la oruga");
                 return;
             }
         }
@@ -204,6 +230,19 @@ public class ZonaInteractuable : MonoBehaviour
                 puerta3Manager.OnClicFragmento();
                 return;
             }
+            else if (objeto.Contains("oruga"))
+            {
+                puerta3Manager.OnClicOruga();
+                MovimientoPersonaje movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
+                if (movimientoPersonaje != null)
+                {
+                    movimientoPersonaje.SetMovimientoHabilitado(false);
+                    // Rehabilitar el movimiento al final del frame (después de que se procese el clic)
+                    StartCoroutine(movimientoPersonaje.RehabilitarMovimiento());
+                }
+                Debug.Log("Clic en la oruga");
+                return;
+            }
         }
         else if (puerta4Manager != null)
         {
@@ -216,6 +255,19 @@ public class ZonaInteractuable : MonoBehaviour
                 puerta4Manager.OnClicFragmento();
                 return;
             }
+            else if (objeto.Contains("oruga"))
+            {
+                puerta4Manager.OnClicOruga();
+                MovimientoPersonaje movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
+                if (movimientoPersonaje != null)
+                {
+                    movimientoPersonaje.SetMovimientoHabilitado(false);
+                    // Rehabilitar el movimiento al final del frame (después de que se procese el clic)
+                    StartCoroutine(movimientoPersonaje.RehabilitarMovimiento());
+                }
+                Debug.Log("Clic en la oruga");
+                return;
+            }
         }
         else if (puerta5Manager != null)
         {
@@ -226,6 +278,19 @@ public class ZonaInteractuable : MonoBehaviour
             if (objeto.Contains("fragmento5"))
             {
                 puerta5Manager.OnClicFragmento();
+                return;
+            }
+            else if (objeto.Contains("oruga"))
+            {
+                puerta5Manager.OnClicOruga();
+                MovimientoPersonaje movimientoPersonaje = FindAnyObjectByType<MovimientoPersonaje>();
+                if (movimientoPersonaje != null)
+                {
+                    movimientoPersonaje.SetMovimientoHabilitado(false);
+                    // Rehabilitar el movimiento al final del frame (después de que se procese el clic)
+                    StartCoroutine(movimientoPersonaje.RehabilitarMovimiento());
+                }
+                Debug.Log("Clic en la oruga");
                 return;
             }
         }

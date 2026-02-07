@@ -16,6 +16,8 @@ public class InterruptorDropZone : MonoBehaviour, IDropHandler
         if (arrastrable == null) return;
 
         string nombre = arrastrable.nombreObjeto;
+
+        if (string.IsNullOrEmpty(nombre) || !nombre.StartsWith("Interruptor"))return;
         if (!InventarioManager.instance.TieneObjeto(nombre)) return;
 
         InventarioManager.instance.QuitarObjeto(nombre);

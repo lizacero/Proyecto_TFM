@@ -1704,7 +1704,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000110308516}
+  m_AnchoredPosition: {x: 0, y: 0.00092365214}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &465842916
@@ -2701,6 +2701,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682836786}
   m_CullTransparentMesh: 1
+--- !u!1 &732305769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1719738889215948915, guid: dfac8060ed3191d42b2af3d1faf7ccdd, type: 3}
+  m_PrefabInstance: {fileID: 6892558056185346337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &732305774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732305769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb91f866612e154f9cfb5bd9d94849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMusicControl
+  slider: {fileID: 822799373}
 --- !u!1 &769857365
 GameObject:
   m_ObjectHideFlags: 0
@@ -3160,6 +3178,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 810937150}
   m_CullTransparentMesh: 1
+--- !u!114 &822799373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6383323209378075071, guid: dfac8060ed3191d42b2af3d1faf7ccdd, type: 3}
+  m_PrefabInstance: {fileID: 6892558056185346337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &827510971 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2669643850925629399, guid: dfac8060ed3191d42b2af3d1faf7ccdd, type: 3}
@@ -5842,7 +5871,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 52851923}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99799466
+  m_Size: 0.9999974
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7497,6 +7526,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1719738889215948915, guid: dfac8060ed3191d42b2af3d1faf7ccdd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 732305774}
     - targetCorrespondingSourceObject: {fileID: 2669643850925629399, guid: dfac8060ed3191d42b2af3d1faf7ccdd, type: 3}
       insertIndex: 1
       addedObject: {fileID: 827510976}

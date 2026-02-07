@@ -5,14 +5,14 @@ public class Puerta1Manager : MonoBehaviour
 {
     public enum EtapaPuzzle1
     {
-        Inicio,        // Interactuar con muebles, no pasa nada; tras N clics → Busqueda
-        Busqueda,       // Aparecen interruptores; se recogen al inventario
-        Interruptores,  // Drag & drop de interruptores a zonas
-        Luz             // Clic en interruptores colocados → luz y tablero
+        Inicio,
+        Busqueda,
+        Interruptores,
+        Luz
     }
 
     [Header("Puzzle 1 - Estados")]
-    [SerializeField] private int clicsParaRevelarInterruptores = 5;  // Ajustable
+    //[SerializeField] private int clicsParaRevelarInterruptores = 5;  // Ajustable
     private int contadorClicsInicio = 0;
     private EtapaPuzzle1 etapaPuzzle1 = EtapaPuzzle1.Inicio;
 
@@ -23,7 +23,7 @@ public class Puerta1Manager : MonoBehaviour
     [SerializeField] private GameObject[] interruptoresEnEscena;  // Los que aparecen en Busqueda
     [SerializeField] private GameObject interruptor;
     [SerializeField] private GameObject zonaInterruptor;
-    [SerializeField] private GameObject luz;                      // Se activa en Luz
+    //[SerializeField] private GameObject luz;                      // Se activa en Luz
     [SerializeField] private GameObject tablero;                 // Aparece cuando hay luz (puzzle 2)
     [SerializeField] private TextMeshProUGUI textoGuion;
     [SerializeField] private TextMeshProUGUI textoAyuda;
@@ -36,7 +36,7 @@ public class Puerta1Manager : MonoBehaviour
     [SerializeField] private GameObject puzzle2;
 
     [Header("Puzzle 2 - Rompecabezas")]
-    [SerializeField] private int totalPiezas = 4;
+    [SerializeField] private int totalPiezas = 15;
     [SerializeField] private GameObject imagenConFrase;
     [SerializeField] private GameObject volver;
     private int piezasColocadasPuzzle2 = 0;
@@ -48,8 +48,6 @@ public class Puerta1Manager : MonoBehaviour
     [SerializeField] private GameObject fragmento1;
     [SerializeField] private GameObject puerta;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interruptor.SetActive(false);
@@ -60,20 +58,13 @@ public class Puerta1Manager : MonoBehaviour
         escena3salida.SetActive(false);
         puzzle2.SetActive(false);
         volver.SetActive(false);
-        // Si ya tenemos el Fragmento en el inventario, ocultarlo
+        textoGuion.text = "Entraste a la habitación de la insensibilidad";
+        textoAyuda.text = "Interactúa con el entorno";
+
+        //Revisar porque si no vuelvo a ingresar a la puerta no es necesario
         if (InventarioManager.instance.TieneObjeto("Fragmento1"))
-        {
-            if (fragmento1 != null)
-            {
-                fragmento1.SetActive(false);
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+            fragmento1.SetActive(false);
+        //------------
     }
 
     /// <summary>
@@ -83,24 +74,36 @@ public class Puerta1Manager : MonoBehaviour
     {
         if (etapaPuzzle1 != EtapaPuzzle1.Inicio) return;
 
-        if (textoGuion != null) textoGuion.text = "No ocurre nada.";
-        if (textoAyuda != null) textoAyuda.text = "Sigue explorando...";
-
         contadorClicsInicio++;
-        if (contadorClicsInicio >= clicsParaRevelarInterruptores)
+        switch (contadorClicsInicio)
         {
-            etapaPuzzle1 = EtapaPuzzle1.Busqueda;
-            RevelarInterruptores();
+            case 1:
+                textoGuion.text = "Parece que no pasa nada";
+                textoAyuda.text = "Interactúa con el entorno";
+                break;
+            case 2:
+                textoGuion.text = "Parece que no pasa nada";
+                textoAyuda.text = "Sigue interactuando";
+                break;
+            case 3:
+                textoGuion.text = "¿Aún nada?, que extraño";
+                textoAyuda.text = "Sigue interactuando";
+                break;
+            case 4:
+                textoGuion.text = "Sigue interactuando";
+                textoAyuda.text = "Sigue interactuando";
+                break;
+            case 5:
+                textoGuion.text = "Quizá pase algo en algún momento";
+                textoAyuda.text = "Sigue interactuando";
+                break;
+            case 6:
+                textoGuion.text = "¡Oh!, ¿qué es eso?";
+                textoAyuda.text = "Haz clic en los interruptores";
+                etapaPuzzle1 = EtapaPuzzle1.Busqueda;
+                interruptor.SetActive(true);
+                break;
         }
-    }
-
-    private void RevelarInterruptores()
-    {
-        interruptor.SetActive(true);
-        //if (interruptoresEnEscena == null) return;
-        //foreach (var o in interruptoresEnEscena)
-        //    if (o != null) o.SetActive(true);
-        if (textoGuion != null) textoGuion.text = "Han aparecido interruptores. Recógelos.";
     }
 
     /// <summary>
@@ -115,10 +118,31 @@ public class Puerta1Manager : MonoBehaviour
         if (InventarioManager.instance.AgregarObjeto(nombreObjeto))
         {
             if (interruptorEnEscena != null) interruptorEnEscena.SetActive(false);
+            textoGuion.text = "Recolectaste un interruptor, revisa tu inventario";
+            textoAyuda.text = "Haz clic en el inventario";
             var menu = MenuGameplay.instance ?? Object.FindAnyObjectByType<MenuGameplay>();
             if (menu != null) menu.ActualizarInventario();
         }
     }
+
+    public void OnInventarioAbierto()
+    {
+        if (etapaPuzzle1 == EtapaPuzzle1.Busqueda || etapaPuzzle1 == EtapaPuzzle1.Interruptores)
+        {
+            textoGuion.text = "Coloca los interruptores";
+            textoAyuda.text = "Selecciona y arrastra los interruptores";
+        }
+    }
+
+    public void OnInventarioCerrado()
+    {
+        if (etapaPuzzle1 == EtapaPuzzle1.Luz)
+        {
+            textoGuion.text = "Enciende la luz";
+            textoAyuda.text = "Haz clic en los interruptores";
+        }
+    }
+
     public void OnInterruptorColocado()
     {
         interruptoresColocados++;
@@ -133,24 +157,30 @@ public class Puerta1Manager : MonoBehaviour
     {
         if (etapaPuzzle1 != EtapaPuzzle1.Luz || luzEncendida) return;
 
+        if (etapaPuzzle1 != EtapaPuzzle1.Luz || luzEncendida) return;
+
         luzEncendida = true;
-        //if (luz != null) luz.SetActive(true);
         if (tablero != null) tablero.SetActive(true);
-        if (textoGuion != null) textoGuion.text = "Se enciende la luz. El tablero queda a la vista.";
+        textoGuion.text = "¿Y ese tablero?";
+        textoAyuda.text = "Haz clic en el tablero";
     }
     public void EntrarPuzzle2()
     {
-        if (escena1Habitacion != null) escena1Habitacion.SetActive(false);
-        if (escena2Tablero != null) escena2Tablero.SetActive(true);
-        if (puzzle2 != null) puzzle2.SetActive(true);
+        escena1Habitacion.SetActive(false);
+        escena2Tablero.SetActive(true);
+        puzzle2.SetActive(true);
+        textoGuion.text = "Es un rompecabezas, ¿Podrás resolverlo?";
+        textoAyuda.text = "Selecciona y arrastra las piezas";
     }
 
     public void SalirPuzzle2()
     {
-        if (escena1Habitacion != null) escena1Habitacion.SetActive(false);
-        if (escena2Tablero != null) escena2Tablero.SetActive(false);
-        if (puzzle2 != null) puzzle2.SetActive(false);
-        if (escena3salida!=null) escena3salida.SetActive(true);
+        escena1Habitacion.SetActive(false);
+        escena2Tablero.SetActive(false);
+        puzzle2.SetActive(false);
+        escena3salida.SetActive(true);
+        textoGuion.text = "Felicidades, Lograste completar el puzle";
+        textoAyuda.text = "Haz clic en el fragmento";
     }
 
     /// <summary>
@@ -159,13 +189,19 @@ public class Puerta1Manager : MonoBehaviour
     public void OnPiezaPuzzle2Colocada()
     {
         piezasColocadasPuzzle2++;
-        if (piezasColocadasPuzzle2 >= totalPiezas && imagenConFrase != null)
+        if (piezasColocadasPuzzle2 >= totalPiezas)
         {
             imagenConFrase.SetActive(true);
             volver.SetActive(true);
         }
-
     }
+
+    public void OnClicOruga()
+    {
+        textoGuion.text = "Recolecta el fragmento";
+        textoAyuda.text = "";
+    }
+
     /// <summary>
     /// Se llama cuando se hace clic en el Fragmento
     /// </summary>
@@ -175,20 +211,19 @@ public class Puerta1Manager : MonoBehaviour
         // Verificar si ya está en el inventario
         if (InventarioManager.instance.TieneObjeto("Fragmento1"))
         {
-            Debug.Log("[Puerta1] Ya tienes el Fragmento en el inventario.");
+            puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            textoGuion.text = "Has guardado el fragmento en el inventario";
+            textoAyuda.text = "Sal de la habitación";
             return;
         }
 
         // Agregar al inventario
-        else if (InventarioManager.instance.AgregarObjeto("Fragmento1"))
+        if (InventarioManager.instance.AgregarObjeto("Fragmento1"))
         {
-            Debug.Log("[Puerta1] Fragmento recolectado y agregado al inventario.");
-
-            // Ocultar el objeto en la escena
-            if (fragmento1 != null)
-            {
-                fragmento1.SetActive(false);
-            }
+            fragmento1.SetActive(false);
+            puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            textoGuion.text = "Has guardado el fragmento en el inventario";
+            textoAyuda.text = "Sal de la habitación";
         }
     }
 }

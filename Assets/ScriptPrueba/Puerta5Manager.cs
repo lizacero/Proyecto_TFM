@@ -1,29 +1,41 @@
+using TMPro;
 using UnityEngine;
 
 public class Puerta5Manager : MonoBehaviour
 {
+    private enum Etapa { WaitFragmento, WaitPuerta }
+
+    [Header("Referencias UI")]
+    [SerializeField] private TextMeshProUGUI textoGuion;
+    [SerializeField] private TextMeshProUGUI textoAyuda;
+
     [Header("Referencias Objetos")]
     [SerializeField] private GameObject fragmento5;
     [SerializeField] private GameObject puerta;
+    [SerializeField] private GameObject oruga;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Etapa etapaActual = Etapa.WaitFragmento;
+
     void Start()
     {
         puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(false);
-        // Si ya tenemos el Fragmento en el inventario, ocultarlo
+
         if (InventarioManager.instance.TieneObjeto("Fragmento5"))
-        {
-            if (fragmento5 != null)
-            {
-                fragmento5.SetActive(false);
-            }
-        }
+            fragmento5.SetActive(false);
+
+        textoGuion.text = "Entraste a la habitación de la ansiedad";
+        textoAyuda.text = "Habitación en construcción";
+
+        if (oruga != null)
+            oruga.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClicOruga()
     {
+        if (etapaActual != Etapa.WaitFragmento) return;
 
+        textoGuion.text = "Recolecta el fragmento";
+        textoAyuda.text = "Haz clic en el fragmento";
     }
 
     /// <summary>
@@ -31,24 +43,21 @@ public class Puerta5Manager : MonoBehaviour
     /// </summary>
     public void OnClicFragmento()
     {
-        puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
-        // Verificar si ya está en el inventario
         if (InventarioManager.instance.TieneObjeto("Fragmento5"))
         {
-            Debug.Log("[Puerta1] Ya tienes el Fragmento en el inventario.");
+            puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            textoGuion.text = "Has guardado el fragmento en el inventario";
+            textoAyuda.text = "Sal de la habitación";
             return;
         }
 
-        // Agregar al inventario
-        else if (InventarioManager.instance.AgregarObjeto("Fragmento5"))
+        if (InventarioManager.instance.AgregarObjeto("Fragmento5"))
         {
-            Debug.Log("[Puerta1] Fragmento recolectado y agregado al inventario.");
-
-            // Ocultar el objeto en la escena
-            if (fragmento5 != null)
-            {
-                fragmento5.SetActive(false);
-            }
+            fragmento5.SetActive(false);
+            puerta.GetComponent<ZonaInteractuable>().SetInteraccionesActivas(true);
+            textoGuion.text = "Has guardado el fragmento en el inventario";
+            textoAyuda.text = "Sal de la habitación";
+            etapaActual = Etapa.WaitPuerta;
         }
     }
 }

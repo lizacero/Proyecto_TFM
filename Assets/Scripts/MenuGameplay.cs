@@ -258,6 +258,8 @@ public class MenuGameplay : MonoBehaviour
 
         isInventario = true;
         ActualizarInventario();
+        var puerta1 = Object.FindAnyObjectByType<Puerta1Manager>();
+        if (puerta1 != null) puerta1.OnInventarioAbierto();
     }
 
     private Sprite ObtenerSprite(string nombreObjeto)
@@ -324,6 +326,8 @@ public class MenuGameplay : MonoBehaviour
     // Cierra el inventario cuando se hace clic fuera del panel
     public void CerrarInventario()
     {
+        var puerta1 = Object.FindAnyObjectByType<Puerta1Manager>();
+        if (puerta1 != null) puerta1.OnInventarioCerrado();
         if (inventario != null)
         {
             inventario.SetActive(false);

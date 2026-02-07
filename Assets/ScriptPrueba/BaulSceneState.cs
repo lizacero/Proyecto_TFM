@@ -26,4 +26,23 @@ public static class BaulSceneState
     public static bool Puerta3abierta = false;
     public static bool Puerta4abierta = false;
     public static bool Puerta5abierta = false;
+
+    public static int GuionBaulValor = 0;
+
+
+    public static void ResetearTodo()
+    {
+        TieneEstado = false;
+        //PosicionPersonaje = Vector3.zero;
+        ConversacionValor = 0;
+        EtapaGuionInt = 0;
+        FragmentosGuardadosEnBaul = 0;
+        GuionBaulValor = 0;
+
+        Puerta1abierta = false;
+        Puerta2abierta = false;
+        Puerta3abierta = false;
+        Puerta4abierta = false;
+        Puerta5abierta = false;
+    }
 }

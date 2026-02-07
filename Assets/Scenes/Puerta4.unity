@@ -2249,6 +2249,72 @@ MonoBehaviour:
   objetoSuelo: {fileID: 2140902138}
   camaraPrincipal: {fileID: 1851750129}
   estaMoviendose: 0
+--- !u!1001 &1996678750
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1377439650835193393, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030485633289195022, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: controlCursor
+      value: 
+      objectReference: {fileID: 2055060037}
+    - target: {fileID: 3678656848785089930, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+      propertyPath: m_Name
+      value: Oruga
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+--- !u!1 &1996678751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3678656848785089930, guid: 55f8b81cc367de4488852d3d9e478363, type: 3}
+  m_PrefabInstance: {fileID: 1996678750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2055060036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,8 +2375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c290fcd3ebc08b844a5b6b609f8de7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Puerta4Manager
+  textoGuion: {fileID: 1647407354}
+  textoAyuda: {fileID: 2695876892442411334}
   fragmento4: {fileID: 943294259}
   puerta: {fileID: 219911219}
+  oruga: {fileID: 1996678751}
 --- !u!114 &2066077969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2388,14 +2457,9 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 7.794464, y: -0.14597893}
-      - {x: -4.464301, y: -0.14462113}
-      - {x: -4.5533204, y: -1.4068497}
-      - {x: -4.653632, y: -1.8800989}
-      - {x: -4.8313403, y: -2.1217647}
-      - {x: -5.346435, y: -2.2091832}
-      - {x: -8.342993, y: -2.1192849}
+      - {x: -8.336841, y: -0.19272721}
       - {x: -8.589012, y: -4.8391514}
-      - {x: 7.938551, y: -4.8208604}
+      - {x: 5.5091934, y: -4.7487016}
   m_UseDelaunayMesh: 0
 --- !u!4 &2140902140
 Transform:
@@ -13934,6 +13998,7 @@ GameObject:
   - component: {fileID: 7996660621864025293}
   - component: {fileID: 195731936931626945}
   - component: {fileID: 2184312839043839605}
+  - component: {fileID: 7996660621864025294}
   m_Layer: 5
   m_Name: VolMusica
   m_TagString: Untagged
@@ -14487,6 +14552,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingsOptionHover
   descriptionManager: {fileID: 1683900824494431821}
   descripcionKey: VolMusica
+--- !u!114 &7996660621864025294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7542786810822944999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb91f866612e154f9cfb5bd9d94849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMusicControl
+  slider: {fileID: 2875266264744509739}
 --- !u!224 &8004951163940534088
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16043,6 +16121,7 @@ SceneRoots:
   - {fileID: 1851750130}
   - {fileID: 1177716466}
   - {fileID: 1958729772}
+  - {fileID: 1996678750}
   - {fileID: 3153489075394060199}
   - {fileID: 925085882}
   - {fileID: 2140902140}

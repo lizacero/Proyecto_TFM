@@ -799,7 +799,7 @@ Transform:
   m_GameObject: {fileID: 512798594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.8, y: -3.99, z: 0}
+  m_LocalPosition: {x: 9.8, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2724,8 +2724,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaulScene
   textoAyuda: {fileID: 3834530519022671991}
   textoGuion: {fileID: 7421324997685855264}
-  panelFade: {fileID: 5646246236862948761}
-  duracionFade: 2
   personaje: {fileID: 0}
   oruga: {fileID: 0}
   baul: {fileID: 0}
@@ -9308,6 +9306,7 @@ GameObject:
   - component: {fileID: 3881320886988306520}
   - component: {fileID: 813032516472043139}
   - component: {fileID: 8770034165182802628}
+  - component: {fileID: 8770034165182802629}
   m_Layer: 5
   m_Name: VolMusica
   m_TagString: Untagged
@@ -17551,6 +17550,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8770034165182802629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3765622705235425418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfb91f866612e154f9cfb5bd9d94849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VolumeMusicControl
+  slider: {fileID: 7747205598349155286}
 --- !u!224 &8773195863569313423
 RectTransform:
   m_ObjectHideFlags: 0

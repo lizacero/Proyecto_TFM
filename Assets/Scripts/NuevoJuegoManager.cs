@@ -84,6 +84,11 @@ public class NuevoJuegoManager : MonoBehaviour
         PlayerPrefs.SetString(KEY_NOMBRE, nombreJugador);
         PlayerPrefs.Save(); // Guardar inmediatamente
 
+        if (InventarioManager.instance != null)
+            InventarioManager.instance.LimpiarInventario();
+        BaulSceneState.ResetearTodo();
+
+
         Debug.Log($"Datos guardados - Personaje: {personajeSeleccionado}, Nombre: {nombreJugador}");
 
         return true;
