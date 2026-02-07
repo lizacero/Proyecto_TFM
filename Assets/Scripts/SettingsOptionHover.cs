@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Va en cada opción del menú Ajustes.
+// Al pasar el cursor por encima muestra la descripción en el panel de AjustesDescriptionManager.
+// La clavedebe existir en el diccionario del manager.
 public class SettingsOptionHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private AjustesDescriptionManager descriptionManager;

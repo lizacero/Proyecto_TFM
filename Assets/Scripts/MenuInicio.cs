@@ -2,12 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Controla los botones del menú principal.
+// Cada botón dispara una animación que muestra un submenú.
+// Jugar valida con NuevoJuegoManager y carga la escena 1
 public class MenuInicio : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    // Referencia al manager de nuevo juego para validar antes de jugar
     [SerializeField] private NuevoJuegoManager nuevoJuegoManager;
 
     public void NuevoJuego()
@@ -30,7 +30,6 @@ public class MenuInicio : MonoBehaviour
             if (nuevoJuegoManager.GuardarDatosYValidar())
             {
                 // Si todo está bien, cargar la escena de gameplay
-                //SceneManager.LoadScene(1);
                 if (SceneTransitionManager.instance != null)
                     SceneTransitionManager.instance.LoadSceneConFade(1);
                 else
@@ -40,12 +39,10 @@ public class MenuInicio : MonoBehaviour
             {
                 // Si no se validó (por ejemplo, no se seleccionó personaje), no cargar
                 Debug.LogWarning("No se puede iniciar el juego. Por favor, completa la selección de personaje.");
-                // Aquí podrías mostrar un mensaje en la UI si lo deseas
             }
         }
         else
         {
-            // Si no hay manager, cargar directamente (comportamiento antiguo)
             Debug.LogWarning("MenuInicio: No se ha asignado el NuevoJuegoManager. Cargando escena sin validación.");
             SceneManager.LoadScene(1);
         }

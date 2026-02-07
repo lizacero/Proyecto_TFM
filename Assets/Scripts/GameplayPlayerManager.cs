@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class GameplayPlayerManager : MonoBehaviour
 {
-    [SerializeField] private GameObject personaje1;
-    [SerializeField] private GameObject personaje2;
+    // Va en las escenas de juego.
+    // Lee de PlayerPrefs el personaje que eligió el jugador en el menú y activa solo ese.
+    [SerializeField] private GameObject[] personajes; // [0] = personaje1, [1] = personaje2
 
     // Claves para PlayerPrefs (deben coincidir con las de NuevoJuegoManager)
     private const string KEY_PERSONAJE = "PersonajeSeleccionado";
@@ -14,73 +15,20 @@ public class GameplayPlayerManager : MonoBehaviour
 
     void Start()
     {
-        // Asegurar que se ejecute después de que la escena esté completamente cargada
-        CargarDatosJugador();
+        personajeSeleccionado = PlayerPrefs.GetInt(KEY_PERSONAJE, 0);
+        nombreJugador = PlayerPrefs.GetString(KEY_NOMBRE, "Jugador");
         ActivarPersonajeSeleccionado();
     }
 
-    // Carga los datos del jugador desde PlayerPrefs
-    private void CargarDatosJugador()
-    {
-        // Cargar personaje seleccionado (1 o 2)
-        personajeSeleccionado = PlayerPrefs.GetInt(KEY_PERSONAJE, 0);
-
-        // Cargar nombre del jugador
-        nombreJugador = PlayerPrefs.GetString(KEY_NOMBRE, "Jugador");
-
-        Debug.Log($"Datos cargados - Personaje: {personajeSeleccionado}, Nombre: {nombreJugador}");
-    }
-
-    // Activa el personaje correspondiente según la selección
+    // Desactiva todos y activa solo el elegido
     private void ActivarPersonajeSeleccionado()
     {
-        // Primero, desactivar ambos personajes por seguridad
-        if (personaje1 != null)
+        if (personajes == null || personajes.Length == 0) return;
+
+        for (int i = 0; i < personajes.Length; i++)
         {
-            personaje1.SetActive(false);
-        }
-
-        if (personaje2 != null)
-        {
-            personaje2.SetActive(false);
-        }
-
-        // Activar el personaje seleccionado
-        switch (personajeSeleccionado)
-        {
-            case 1:
-                if (personaje1 != null)
-                {
-                    personaje1.SetActive(true);
-                    Debug.Log("Personaje 1 activado");
-                }
-                else
-                {
-                    Debug.LogError("GameplayPlayerManager: No se encontró la referencia al Personaje1.");
-                }
-                break;
-
-            case 2:
-                if (personaje2 != null)
-                {
-                    personaje2.SetActive(true);
-                    Debug.Log("Personaje 2 activado");
-                }
-                else
-                {
-                    Debug.LogError("GameplayPlayerManager: No se encontró la referencia al Personaje2.");
-                }
-                break;
-
-            default:
-                Debug.LogWarning($"GameplayPlayerManager: Personaje seleccionado inválido ({personajeSeleccionado}). No se activará ningún personaje.");
-                // Opcional: activar personaje por defecto (Personaje1)
-                if (personaje1 != null)
-                {
-                    personaje1.SetActive(true);
-                    Debug.Log("Activado Personaje1 por defecto");
-                }
-                break;
+            if (personajes[i] != null)
+                personajes[i].SetActive(i == personajeSeleccionado - 1);
         }
     }
 

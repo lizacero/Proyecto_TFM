@@ -131,8 +131,9 @@ GameObject:
   - component: {fileID: 26861389}
   - component: {fileID: 26861388}
   - component: {fileID: 26861387}
+  - component: {fileID: 26861390}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Baulzone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,6 +210,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26861385}
   m_CullTransparentMesh: 1
+--- !u!114 &26861390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26861385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b918f80f38ec637419f2e7088364c3a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDropZone
+  prefijoAceptado: Fragmento
+  tipo: 0
+  textoGuion: {fileID: 7421324997685855264}
+  baulScene: {fileID: 2055060039}
+  puerta1Manager: {fileID: 0}
+  visualColocado: {fileID: 0}
+  onDropCompletado:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
 --- !u!1 &124746555
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+// Se pone en botones o UI que tengan collider/raycast.
+// Al pasar el cursor por encima cambia a la mano, al salir, vuelve al cursor normal.
+// Usa ControlCursor para eso.
 public class ButtonCursorHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Referencia al ControlCursor")]
@@ -17,30 +20,20 @@ public class ButtonCursorHover : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (controlCursor == null)
             {
                 Debug.LogWarning($"ButtonCursorHover en '{gameObject.name}': No se encontró ControlCursor en la escena. " +
-                    "Asegúrate de que existe un GameObject con el script ControlCursor.");
+                    "Debe existir un GameObject con el script ControlCursor.");
             }
         }
     }
 
-    /// <summary>
-    /// Se ejecuta cuando el cursor entra en el botón
-    /// </summary>
+    // Cuando el cursor entra en el área del botón se cambia a cursor mano
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (controlCursor != null)
-        {
-            controlCursor.CambiarCursor("Mano");
-        }
+        if (controlCursor != null) controlCursor.CambiarCursor("Mano");
     }
 
-    /// <summary>
-    /// Se ejecuta cuando el cursor sale del botón
-    /// </summary>
+    // Se ejecuta cuando el cursor sale del botón, vuelve a cursor normal
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (controlCursor != null)
-        {
-            controlCursor.CambiarCursor("Normal");
-        }
+        if (controlCursor != null) controlCursor.CambiarCursor("Normal");
     }
 }

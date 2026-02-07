@@ -1,11 +1,13 @@
 using UnityEngine;
 using TMPro;
 
+// Controla el submenú de "Nuevo Juego": selección de personaje y nombre.
+// GuardarDatosYValidar es lo que llama MenuInicio al pulsar Jugar: guarda en PlayerPrefs,
+// limpia inventario y estado del baúl, y devuelve false si no hay personaje elegido.
+
 public class NuevoJuegoManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField inputFieldNombre;
-    //[SerializeField] private Button btnPersonaje1;
-    //[SerializeField] private Button btnPersonaje2;
 
     // Personaje seleccionado: 1 o 2
     private int personajeSeleccionado = 0;
@@ -37,30 +39,26 @@ public class NuevoJuegoManager : MonoBehaviour
         Debug.Log("Personaje 2 seleccionado");
     }
 
-    // Obtiene el nombre del campo de texto y lo guarda
+    // Lee el nombre del InputField y lo guarda en nombreJugador. Si está vacío, pone "Jugador"
     public void GuardarNombre()
     {
         if (inputFieldNombre != null)
         {
             nombreJugador = inputFieldNombre.text;
 
-            // Si el nombre está vacío, asignar un nombre por defecto
             if (string.IsNullOrEmpty(nombreJugador.Trim()))
             {
                 nombreJugador = "Jugador";
-                if (inputFieldNombre != null)
-                {
                     inputFieldNombre.text = nombreJugador;
-                }
             }
         }
         else
         {
-            nombreJugador = "Jugador"; // Nombre por defecto si no hay input field
+            nombreJugador = "Jugador";
         }
     }
 
-    /// Guarda todos los datos en PlayerPrefs y retorna true si todo está listo
+    // Guarda todos los datos en PlayerPrefs y retorna true si todo está listo
     public bool GuardarDatosYValidar()
     {
         // Obtener el nombre del input field
@@ -73,7 +71,7 @@ public class NuevoJuegoManager : MonoBehaviour
             return false;
         }
 
-        // Validar que haya un nombre (aunque ya tiene por defecto)
+        // Validar que haya un nombre 
         if (string.IsNullOrEmpty(nombreJugador))
         {
             nombreJugador = "Jugador";

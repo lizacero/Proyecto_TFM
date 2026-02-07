@@ -1,28 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Controla el HUD durante el juego: pausa, ajustes, inventario, ayuda, volver/salir.
+// Singleton al que acceden BaulDropZone, InterruptorDropZone, etc. para ActualizarInventario.
+// Gestiona los paneles, el inventario visual y el diálogo de guardar antes de volver/salir.
 public class MenuGameplay : MonoBehaviour
 {
     public static MenuGameplay instance;
+
+    [Header("Paneles")]
     [SerializeField] private GameObject pausa;
     [SerializeField] private GameObject ajustes;
     [SerializeField] private GameObject guardar;
     [SerializeField] private GameObject inventario;
     [SerializeField] private GameObject ayuda;
-    [SerializeField] private TextMeshProUGUI textoGuardar;
-
-    // Referencia al overlay/background del inventario para detectar clics fuera
     [SerializeField] private GameObject inventarioOverlay;
     [SerializeField] private GameObject ayudaOverlay;
-    [SerializeField] private TextMeshProUGUI textoInventario;
 
+    [Header("Inventario")]
+    [SerializeField] private TextMeshProUGUI textoInventario;
     [SerializeField] private Image[] slotsInventario;
     [SerializeField] private List<ItemInventario> itemsInventario = new List<ItemInventario>();
 
+    [SerializeField] private TextMeshProUGUI textoGuardar;
 
     private bool isPausa = false;   
     private bool isAjustes = false;
@@ -37,62 +40,29 @@ public class MenuGameplay : MonoBehaviour
         instance = this;
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         // CRÍTICO: Asegurar que Time.timeScale esté en 1 al iniciar la escena
         Time.timeScale = 1;
-
-        // Asegurar que todos los paneles estén desactivados al inicio
         InicializarPaneles();
-
-        // Resetear todas las variables de estado
         ResetearEstados();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Inicializa todos los paneles de UI desactivándolos al inicio
+    // Inicializa todos los paneles de UI
     private void InicializarPaneles()
     {
-        if (pausa != null)
-        {
-            pausa.SetActive(false);
-        }
+        SetActivo(pausa, false);
+        SetActivo(ajustes, false);
+        SetActivo(guardar, false);
+        SetActivo(inventario, false);
+        SetActivo(ayuda, true); 
+        SetActivo(inventarioOverlay, false);
+        SetActivo(ayudaOverlay, false);
+    }
 
-        if (ajustes != null)
-        {
-            ajustes.SetActive(false);
-        }
-
-        if (guardar != null)
-        {
-            guardar.SetActive(false);
-        }
-
-        if (inventario != null)
-        {
-            inventario.SetActive(false);
-        }
-
-        if (ayuda != null)
-        {
-            //ayuda.SetActive(false);
-            ayuda.SetActive(true);
-        }
-        // Desactivar el overlay del inventario también
-        if (inventarioOverlay != null)
-        {
-            inventarioOverlay.SetActive(false);
-        }
-        if (ayudaOverlay != null)
-        {
-            ayudaOverlay.SetActive(false);
-        }
+    private void SetActivo(GameObject go, bool activo)
+    {
+        if (go != null) go.SetActive(activo);
     }
 
     /// Resetea todas las variables de estado a sus valores iniciales
@@ -110,12 +80,8 @@ public class MenuGameplay : MonoBehaviour
     // Botón
     public void Pausa()
     {
-        //activar pantalla pausa
         Time.timeScale = 0;
-        if (pausa != null)
-        {
-            pausa.SetActive(true);
-        }
+        SetActivo(pausa, true);
         ToggleZonasSensibles(false);
         isPausa = true;
     }
@@ -123,55 +89,31 @@ public class MenuGameplay : MonoBehaviour
     // Botón
     public void Ajustes()
     {
-        //activar pantalla ajustes
         Time.timeScale = 0;
-        if (ajustes != null)
-        {
-            ajustes.SetActive(true);
-        }
+        SetActivo(ajustes, true);
         isAjustes = true;
 
     }
     // Botón
     public void Volver()
     {
-        //advertencia guardar antes de?
-        //bool volver
-        if (guardar != null)
-        {
-            guardar.SetActive(true);
-        }
+        SetActivo(guardar, true);
         isVolver = true;
         isGuardar = true;
-        if (textoGuardar != null)
-        {
-            textoGuardar.text = "¿Desea Guardar antes de volver al inicio?";
-        }
+        if (textoGuardar != null) textoGuardar.text = "¿Desea Guardar antes de volver al inicio?";
 
     }
     // Botón
     public void Salir()
     {
-        //advertencia pantalla guardar
-        //bool salir
-        if (guardar != null)
-        {
-            guardar.SetActive(true);
-        }
+        SetActivo(guardar, true);
         isSalir = true;
         isGuardar = true;
-        if (textoGuardar != null)
-        {
-            textoGuardar.text = "¿Desea Guardar antes de salir?";
-        }
+        if (textoGuardar != null) textoGuardar.text = "¿Desea Guardar antes de salir?";
     }
     // Botón si
     public void Guardar()
     {
-        //guardar partida 
-        //if volver - menuprincipal
-        //if salir - quit
-
         //Desactivar botones
         Debug.Log("Guardando");
 
@@ -181,26 +123,16 @@ public class MenuGameplay : MonoBehaviour
         if (isVolver)
         {
             isVolver = false;
-            if (textoGuardar != null)
-            {
-                textoGuardar.text = "Guardando y volviendo";
-            }
-            // Restaurar cursor del sistema antes de cambiar de escena
+            textoGuardar.text = "Guardando y volviendo";
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            // No usar corrutina aquí, cargar directamente
-            // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
         }
         if (isSalir)
         {
             isSalir = false;
             if (textoGuardar != null)
-            {
-                textoGuardar.text = "Guardando y saliendo";
-            }
-            // No usar corrutina aquí, salir directamente
-            // StartCoroutine(Delay());
+            textoGuardar.text = "Guardando y saliendo";
             Debug.Log("Saliendo");
             Application.Quit();
         }
@@ -208,35 +140,19 @@ public class MenuGameplay : MonoBehaviour
     // Botón no
     public void No()
     {
-        //if volver
-        //if salir
-
-        //Desactivar botones
-
         // CRÍTICO: Restaurar Time.timeScale antes de cargar la escena
         Time.timeScale = 1;
 
         if (isVolver)
         {
-            if (textoGuardar != null)
-            {
-                textoGuardar.text = "Volviendo";
-            }
-            // Restaurar cursor del sistema antes de cambiar de escena
+            textoGuardar.text = "Volviendo";
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-            // No usar corrutina aquí, cargar directamente
-            // StartCoroutine(Delay());
             SceneManager.LoadScene(0);
         }
         if (isSalir)
         {
-            if (textoGuardar != null)
-            {
-                textoGuardar.text = "Saliendo";
-            }
-            // No usar corrutina aquí, salir directamente
-            // StartCoroutine(Delay());
+            textoGuardar.text = "Saliendo";
             Debug.Log("Saliendo");
             Application.Quit();
         }
@@ -245,20 +161,12 @@ public class MenuGameplay : MonoBehaviour
     //botón
     public void Inventario()
     {
-        //activa pantalla inventario
-        if (inventario != null)
-        {
-            inventario.SetActive(true);
-        }
-        // Activar el overlay para detectar clics fuera
-        if (inventarioOverlay != null)
-        {
-            inventarioOverlay.SetActive(true);
-        }
-
+        SetActivo(inventario, true);
+        SetActivo(inventarioOverlay, true);
         isInventario = true;
         ActualizarInventario();
-        var puerta1 = Object.FindAnyObjectByType<Puerta1Manager>();
+
+        var puerta1 = FindAnyObjectByType<Puerta1Manager>();
         if (puerta1 != null) puerta1.OnInventarioAbierto();
     }
 
@@ -328,47 +236,22 @@ public class MenuGameplay : MonoBehaviour
     {
         var puerta1 = Object.FindAnyObjectByType<Puerta1Manager>();
         if (puerta1 != null) puerta1.OnInventarioCerrado();
-        if (inventario != null)
-        {
-            inventario.SetActive(false);
-        }
-        // Desactivar el overlay también
-        if (inventarioOverlay != null)
-        {
-            inventarioOverlay.SetActive(false);
-        }
-
+        SetActivo(inventario, false);
+        SetActivo(inventarioOverlay, false);
         isInventario = false;
     }
 
     //botón
     public void Ayuda()
     {
-        //activa pantalla ayuda
-        if (ayuda != null)
-        {
-            ayuda.SetActive(true);
-        }
-        // Activar el overlay para detectar clics fuera
-        if (ayudaOverlay != null)
-        {
-            ayudaOverlay.SetActive(true);
-        }
-
+        SetActivo(ayuda, true);
+        SetActivo(ayudaOverlay, true);
         isAyuda = true;
     }
     public void CerrarAyuda()
     {
-        if (ayuda != null)
-        {
-            ayuda.SetActive(false);
-        }
-        //desactivarOverlay
-        if (ayudaOverlay != null)
-        {
-            ayudaOverlay.SetActive(false);
-        }
-
+        SetActivo(ayuda, false);
+        SetActivo(ayudaOverlay, false);
         isAyuda = false;
     }
     //botón
@@ -379,42 +262,27 @@ public class MenuGameplay : MonoBehaviour
         //cerrar ayuda
         if (isPausa)
         {
-            if (pausa != null)
-            {
-                pausa.SetActive(false);
-            }
+            if (pausa != null) pausa.SetActive(false);
             isPausa = false;
         }
         if (isGuardar)
         {
-            if (guardar != null)
-            {
-                guardar.SetActive(false);
-            }
+            if (guardar != null) guardar.SetActive(false);
             isGuardar = false;
         }
         if (isAjustes)
         {
-            if (ajustes != null)
-            {
-                ajustes.SetActive(false);
-            }
+            if (ajustes != null) ajustes.SetActive(false);
             isAjustes = false;
         }
         if (isInventario)
         {
-            if (inventario != null)
-            {
-                inventario.SetActive(false);
-            }
+            if (inventario != null) inventario.SetActive(false);
             isInventario = false;
         }
         if (isAyuda)
         {
-            if (ayuda != null)
-            {
-                ayuda.SetActive(false);
-            }
+            if (ayuda != null) ayuda.SetActive(false);
             isAyuda = false;
         }
         ToggleZonasSensibles(true);
