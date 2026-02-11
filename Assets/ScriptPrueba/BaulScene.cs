@@ -13,6 +13,7 @@ public class BaulScene : MonoBehaviour
     [SerializeField] private GameObject personaje;
     [SerializeField] private GameObject oruga;
     [SerializeField] private GameObject baul;
+    [SerializeField] private GameObject baulzone;
     [SerializeField] private GameObject puerta1;
     [SerializeField] private GameObject puerta2;
     [SerializeField] private GameObject puerta3;
@@ -43,6 +44,7 @@ public class BaulScene : MonoBehaviour
 
     private void Awake()
     {
+        baulzone.SetActive(false);
         personaje = GameObject.Find("Personaje");
         oruga = GameObject.Find("Oruga");
         baul = GameObject.Find("Baul");
@@ -80,6 +82,7 @@ public class BaulScene : MonoBehaviour
             }
             else if (fragmentosEnInventario >= 5)
             {
+                baulzone.SetActive(true);
                 textoGuion.text = "Guarda los fragmentos en el baúl";
                 textoAyuda.text = "Abre el inventario y arrastra los fragmentos al baúl";
             }

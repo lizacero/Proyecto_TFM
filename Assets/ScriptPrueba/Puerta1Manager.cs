@@ -11,6 +11,7 @@ public class Puerta1Manager : MonoBehaviour
         Luz
     }
 
+    [SerializeField] private GameObject personaje;
     [Header("Puzzle 1 - Estados")]
     //[SerializeField] private int clicsParaRevelarInterruptores = 5;  // Ajustable
     private int contadorClicsInicio = 0;
@@ -167,6 +168,7 @@ public class Puerta1Manager : MonoBehaviour
     public void EntrarPuzzle2()
     {
         escena1Habitacion.SetActive(false);
+        personaje.SetActive(false);
         escena2Tablero.SetActive(true);
         puzzle2.SetActive(true);
         textoGuion.text = "Es un rompecabezas, ¿Podrás resolverlo?";
@@ -176,6 +178,7 @@ public class Puerta1Manager : MonoBehaviour
     public void SalirPuzzle2()
     {
         escena1Habitacion.SetActive(false);
+        personaje.SetActive(true);
         escena2Tablero.SetActive(false);
         puzzle2.SetActive(false);
         escena3salida.SetActive(true);

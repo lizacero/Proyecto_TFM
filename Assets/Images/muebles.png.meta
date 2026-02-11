@@ -1,0 +1,1144 @@
+fileFormatVersion: 2
+guid: f6eec15d39eef1146ae89157a71a37e7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8236811705199095316
+    second: muebles_0
+  - first:
+      213: -6190512996099912067
+    second: muebles_1
+  - first:
+      213: 8923790856556318684
+    second: muebles_2
+  - first:
+      213: -6868589873173120024
+    second: muebles_3
+  - first:
+      213: -1552599678832430116
+    second: muebles_4
+  - first:
+      213: -6869465389222382120
+    second: muebles_5
+  - first:
+      213: -183099329846170838
+    second: muebles_6
+  - first:
+      213: -5807631981881236367
+    second: muebles_7
+  - first:
+      213: -1273271478314468373
+    second: muebles_8
+  - first:
+      213: -7662538862255395032
+    second: muebles_9
+  - first:
+      213: 8155675754011024629
+    second: muebles_10
+  - first:
+      213: -1770194314508768011
+    second: muebles_11
+  - first:
+      213: 8014132918637783464
+    second: muebles_12
+  - first:
+      213: 4570518490141175936
+    second: muebles_13
+  - first:
+      213: 6641899882846206370
+    second: muebles_14
+  - first:
+      213: 7699320107631345756
+    second: muebles_15
+  - first:
+      213: -5023876675174366962
+    second: muebles_16
+  - first:
+      213: -3919578552887054158
+    second: muebles_17
+  - first:
+      213: 6852739734360060353
+    second: muebles_18
+  - first:
+      213: 647023108031564137
+    second: muebles_19
+  - first:
+      213: -5035457971426759728
+    second: muebles_20
+  - first:
+      213: -4173469799784604374
+    second: muebles_21
+  - first:
+      213: 3185172856892030836
+    second: muebles_22
+  - first:
+      213: -8413460605405180204
+    second: muebles_23
+  - first:
+      213: -6851797017396532024
+    second: muebles_24
+  - first:
+      213: 5336270139690863402
+    second: muebles_25
+  - first:
+      213: -5748953793128891198
+    second: muebles_26
+  - first:
+      213: -8033461821327448944
+    second: muebles_27
+  - first:
+      213: -511072402596581554
+    second: muebles_28
+  - first:
+      213: -8588505491392665865
+    second: muebles_29
+  - first:
+      213: -2479667837131584788
+    second: muebles_30
+  - first:
+      213: 7188495932359958662
+    second: muebles_31
+  - first:
+      213: 2372671894562081647
+    second: muebles_32
+  - first:
+      213: -3078422987757060322
+    second: muebles_33
+  - first:
+      213: -8961549418660065738
+    second: muebles_34
+  - first:
+      213: -6420791043771927605
+    second: muebles_35
+  - first:
+      213: 4033662526452512248
+    second: muebles_36
+  - first:
+      213: -3528092900502171288
+    second: muebles_37
+  - first:
+      213: -1927254078872015734
+    second: muebles_38
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: muebles_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 823
+        width: 63
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41eeb2afa980f4270800000000000000
+      internalID: 8236811705199095316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 826
+        width: 69
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7e86029a31e61aa0800000000000000
+      internalID: -6190512996099912067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_2
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 821
+        width: 67
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdf0be6f08ca7db70800000000000000
+      internalID: 8923790856556318684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 814
+        width: 65
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ebbba5d6eddda0a0800000000000000
+      internalID: -6868589873173120024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 704
+        width: 43
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd3bec071de047ae0800000000000000
+      internalID: -1552599678832430116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_5
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 701
+        width: 47
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d53f8edf91caa0a0800000000000000
+      internalID: -6869465389222382120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_6
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 703
+        width: 52
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2b28ed2120857df0800000000000000
+      internalID: -183099329846170838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_7
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 697
+        width: 34
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17465cd8b75276fa0800000000000000
+      internalID: -5807631981881236367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 600
+        width: 54
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bebfd68265e645ee0800000000000000
+      internalID: -1273271478314468373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_9
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 603
+        width: 93
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f24ada08139a590800000000000000
+      internalID: -7662538862255395032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_10
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 598
+        width: 66
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fcd71d33e7ce2170800000000000000
+      internalID: 8155675754011024629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_11
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 595
+        width: 46
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fce94c56a10f67e0800000000000000
+      internalID: -1770194314508768011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_12
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 488
+        width: 58
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a96b26cd6be73f60800000000000000
+      internalID: 8014132918637783464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_13
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 495
+        width: 71
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0803834e95ebd6f30800000000000000
+      internalID: 4570518490141175936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_14
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 492
+        width: 63
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9b1cec0c4cc2c50800000000000000
+      internalID: 6641899882846206370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_15
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 492
+        width: 78
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c50836b58da79da60800000000000000
+      internalID: 7699320107631345756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_16
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 379
+        width: 62
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e018cd418ca974ab0800000000000000
+      internalID: -5023876675174366962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_17
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 382
+        width: 69
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b07deda21cda99c0800000000000000
+      internalID: -3919578552887054158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_18
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 375
+        width: 64
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c17cb42b72d91f50800000000000000
+      internalID: 6852739734360060353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_19
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 369
+        width: 62
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 969c0b3b610baf800800000000000000
+      internalID: 647023108031564137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_20
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 259
+        width: 42
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dbe2bb67a57e1ab0800000000000000
+      internalID: -5035457971426759728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_21
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 256
+        width: 45
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2d940f345bd416c0800000000000000
+      internalID: -4173469799784604374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_22
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 275
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47ff34b66d1043c20800000000000000
+      internalID: 3185172856892030836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_23
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 255
+        width: 47
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dec413e7226d3b80800000000000000
+      internalID: -8413460605405180204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_24
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 252
+        width: 37
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ccaff04ae689e0a0800000000000000
+      internalID: -6851797017396532024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_25
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 155
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2b4cc55b6d3e0a40800000000000000
+      internalID: 5336270139690863402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_26
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 159
+        width: 94
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ccfa620cfc9730b0800000000000000
+      internalID: -5748953793128891198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_27
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 181
+        width: 35
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0946d1f5909638090800000000000000
+      internalID: -8033461821327448944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_28
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 153
+        width: 68
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4fa9bc8b5e48e8f0800000000000000
+      internalID: -511072402596581554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_29
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 151
+        width: 45
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f66c0a62cf7fc880800000000000000
+      internalID: -8588505491392665865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_30
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 181
+        width: 35
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea8fce6d33769dd0800000000000000
+      internalID: -2479667837131584788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_31
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 44
+        width: 55
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680e7a5d6faa2c360800000000000000
+      internalID: 7188495932359958662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_32
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 48
+        width: 68
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b0de3648c6de020800000000000000
+      internalID: 2372671894562081647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_33
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 91
+        width: 61
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ff7525a9e3745d0800000000000000
+      internalID: -3078422987757060322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_34
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 79
+        width: 28
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e88a7b84e22a380800000000000000
+      internalID: -8961549418660065738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_35
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 79
+        width: 28
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc3f6f28094c4e6a0800000000000000
+      internalID: -6420791043771927605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_36
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 47
+        width: 78
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f5b10152b27af730800000000000000
+      internalID: 4033662526452512248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_37
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 49
+        width: 56
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8619dfa1332b90fc0800000000000000
+      internalID: -3528092900502171288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: muebles_38
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 66
+        width: 55
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8c29e450a40145e0800000000000000
+      internalID: -1927254078872015734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      muebles_0: 8236811705199095316
+      muebles_1: -6190512996099912067
+      muebles_10: 8155675754011024629
+      muebles_11: -1770194314508768011
+      muebles_12: 8014132918637783464
+      muebles_13: 4570518490141175936
+      muebles_14: 6641899882846206370
+      muebles_15: 7699320107631345756
+      muebles_16: -5023876675174366962
+      muebles_17: -3919578552887054158
+      muebles_18: 6852739734360060353
+      muebles_19: 647023108031564137
+      muebles_2: 8923790856556318684
+      muebles_20: -5035457971426759728
+      muebles_21: -4173469799784604374
+      muebles_22: 3185172856892030836
+      muebles_23: -8413460605405180204
+      muebles_24: -6851797017396532024
+      muebles_25: 5336270139690863402
+      muebles_26: -5748953793128891198
+      muebles_27: -8033461821327448944
+      muebles_28: -511072402596581554
+      muebles_29: -8588505491392665865
+      muebles_3: -6868589873173120024
+      muebles_30: -2479667837131584788
+      muebles_31: 7188495932359958662
+      muebles_32: 2372671894562081647
+      muebles_33: -3078422987757060322
+      muebles_34: -8961549418660065738
+      muebles_35: -6420791043771927605
+      muebles_36: 4033662526452512248
+      muebles_37: -3528092900502171288
+      muebles_38: -1927254078872015734
+      muebles_4: -1552599678832430116
+      muebles_5: -6869465389222382120
+      muebles_6: -183099329846170838
+      muebles_7: -5807631981881236367
+      muebles_8: -1273271478314468373
+      muebles_9: -7662538862255395032
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
